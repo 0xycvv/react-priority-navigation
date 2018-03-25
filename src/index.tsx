@@ -6,19 +6,22 @@ import ResizeObserver from 'resize-observer-polyfill';
 import ToggleButton from './ToggleButton';
 
 const Root = styled.div`
-  min-width: 250px;
+  min-width: ${(props: { minWidth: string }) =>
+    props.minWidth ? props.minWidth : '250px'};
   position: relative;
   white-space: nowrap;
 `;
 
 const Wrapper = styled.div`
   display: inline-block;
+  background: ${(props: { background: string }) =>
+    props.background ? props.background : 'unset'};
 `;
 
 const Item = styled.div`
   display: inline-block;
   padding: ${(props: { itemPadding: string }) =>
-    props.itemPadding ? props.itemPadding : '4rem 2rem'};
+    props.itemPadding ? props.itemPadding : '20px'};
 
   &:first-child {
     padding-left: 0;
@@ -28,7 +31,11 @@ const Item = styled.div`
 interface Props {
   children: Array<React.ReactNode>;
   itemPadding: string;
+  minWidth: string;
   offset: number;
+  navSetting: {
+    background: string;
+  };
   iconSetting: {
     color: string;
     size: number;
@@ -137,17 +144,21 @@ export default class PriorityNav extends React.Component<Props, State> {
   public render() {
     return (
       <Root
+        minWidth={this.props.minWidth}
         innerRef={s => {
           this.outerNav = s;
         }}
       >
         <Wrapper
+          {...this.props.navSetting}
           innerRef={s => {
             this.nav = s;
           }}
         >
           {this.renderChildren(this.props)}
-          {this.state.dropdownItems.length > 0 && <ToggleButton {...this.props.iconSetting} />}
+          {this.state.dropdownItems.length > 0 && (
+            <ToggleButton {...this.props.iconSetting} />
+          )}
         </Wrapper>
         {this.state.dropdownItems.length > 0 &&
           this.state.dropdownItems.map((item, i) => <div key={i}>{item}</div>)}
