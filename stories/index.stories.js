@@ -7,11 +7,8 @@ import { linkTo } from '@storybook/addon-links';
 
 import PriorityNav from '../src/index';
 
-const WIDTH = 400;
-
 const Wrapper = styled.div`
   position: relative;
-  width: ${props => props.diff ? `${WIDTH - props.diff}px` : `${WIDTH}px`};
   border: 2px solid #fed;
   display: inline-block;
   overflow: hidden;
@@ -36,33 +33,44 @@ class DemoWrapper extends Component {
   state = {
     clientX: null,
     diff: null,
+    start: 400,
   };
 
-  handleMouseDown = (e) => {
+  handleMouseDown = e => {
     window.addEventListener('mousemove', this.handleDrag);
     window.addEventListener('mouseup', this.handleDragEnd);
     this.setState({
-      clientX: e.clientX
-    })
+      clientX: e.clientX,
+    });
   };
 
   handleDrag = e => {
     e.stopPropagation();
     this.setState((prevState, props) => {
       return {
-        diff: prevState.clientX - e.clientX
-      }
-    })
+        diff: prevState.clientX - e.clientX,
+      };
+    });
   };
 
   handleDragEnd = () => {
     window.removeEventListener('mousemove', this.handleDrag);
     window.addEventListener('mouseup', this.handleDragEnd);
+    this.setState({
+      start: this.state.start - this.state.diff,
+      diff: null,
+    });
   };
   render() {
     return (
       <div>
-        <Wrapper diff={this.state.diff}>
+        <Wrapper
+          style={{
+            width: this.state.diff
+              ? `${this.state.start - this.state.diff}px`
+              : `${this.state.start}px`,
+          }}
+        >
           {this.props.children}
           <ResizeHandler onMouseDown={this.handleMouseDown} />
         </Wrapper>

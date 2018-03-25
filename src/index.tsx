@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import ResizeObserver from 'resize-observer-polyfill';
 
 import ToggleButton from './ToggleButton';
+import DropdownList from './DropdownList';
 
 const Root = styled.div`
   min-width: ${(props: { minWidth: string }) =>
@@ -33,6 +34,7 @@ interface Props {
   itemPadding: string;
   minWidth: string;
   offset: number;
+  delay: number;
   navSetting: {
     background: string;
   };
@@ -47,18 +49,21 @@ interface State {
   resizeId: any;
   children: Array<React.ReactNode>;
   dropdownItems: Array<React.ReactNode>;
-  lastItemWidth: number | null;
+  lastItemWidth: Array<number>;
+  show: boolean;
 }
 
 export default class PriorityNav extends React.Component<Props, State> {
   static defaultProps = {
-    offset: 110,
+    offset: 0,
+    delay: 50,
   };
   state = {
     resizeId: null,
     children: this.props.children,
     dropdownItems: [],
-    lastItemWidth: null,
+    lastItemWidth: [],
+    show: false,
   };
   outerNav: HTMLDivElement;
   nav: HTMLDivElement;
@@ -71,14 +76,13 @@ export default class PriorityNav extends React.Component<Props, State> {
   }
 
   componentWillUnmount() {
-    // window.removeEventListener('resize', this.onResize);
     clearInterval(this.state.resizeId!);
   }
 
   onResize = () => {
     clearTimeout(this.state.resizeId!);
     this.setState({
-      resizeId: setTimeout(this.doesItFit, 50),
+      resizeId: setTimeout(this.doesItFit, this.props.delay),
     });
   };
 
@@ -86,12 +90,14 @@ export default class PriorityNav extends React.Component<Props, State> {
     if (this.nav) {
       const outerWidth = this.outerNav.offsetWidth;
       const totalWidth = this.nav.offsetWidth;
-      // check if last item width
       if (this.items.size > 0 && totalWidth > outerWidth) {
         this.moveItemToList();
       } else if (
         this.state.dropdownItems.length > 0 &&
-        outerWidth > totalWidth + this.state.lastItemWidth! + this.props.offset
+        outerWidth >
+          totalWidth +
+            this.state.lastItemWidth[this.state.lastItemWidth.length - 1] +
+            this.props.offset
       ) {
         this.moveItemToNav();
       }
@@ -105,8 +111,10 @@ export default class PriorityNav extends React.Component<Props, State> {
       return {
         children,
         dropdownItems: lastItem.concat(prevState.dropdownItems),
-        lastItemWidth: this.items.get(prevState.children.length - 1)!
-          .clientWidth,
+        lastItemWidth: [
+          ...prevState.lastItemWidth,
+          this.items.get(prevState.children.length - 1)!.clientWidth,
+        ],
       };
     });
   };
@@ -118,8 +126,15 @@ export default class PriorityNav extends React.Component<Props, State> {
       return {
         children: [...prevState.children].concat(firstItemFromList),
         dropdownItems,
+        lastItemWidth: prevState.lastItemWidth.splice(0, 1),
       };
     });
+  };
+
+  toggleShow = () => {
+    this.setState((prevState, props) => ({
+      show: !prevState.show,
+    }));
   };
 
   renderChildren = (props: Props) => {
@@ -157,11 +172,24 @@ export default class PriorityNav extends React.Component<Props, State> {
         >
           {this.renderChildren(this.props)}
           {this.state.dropdownItems.length > 0 && (
-            <ToggleButton {...this.props.iconSetting} />
+            <Trigger
+              action={['click']}
+              popupAlign={{
+                points: ['tl', 'bl'],
+                offset: [0, 3]
+              }}
+              popup={
+                <DropdownList>
+                  {this.state.dropdownItems.map((item, i) => (
+                    <div key={i}>{item}</div>
+                  ))}
+                </DropdownList>
+              }
+            >
+              <ToggleButton {...this.props.iconSetting} />
+            </Trigger>
           )}
         </Wrapper>
-        {this.state.dropdownItems.length > 0 &&
-          this.state.dropdownItems.map((item, i) => <div key={i}>{item}</div>)}
       </Root>
     );
   }
