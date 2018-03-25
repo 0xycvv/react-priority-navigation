@@ -10,8 +10,8 @@ storiesOf('Button', module).add('with some emoji', () => (
   <PriorityNav>
     <button>yoyo</button>
     <a>yoyo</a>
-    <div>yoyo</div>
-    <div>yoyo</div>
-    <div>yoyo</div>
+    <div>a</div>
+    <div>bccc</div>
+    <div>cssssasdfasdfadsf</div>
   </PriorityNav>
 ));

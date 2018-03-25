@@ -1,6 +1,9 @@
 import * as React from 'react';
+import Trigger from 'rc-trigger';
 import styled from 'styled-components';
-import { getElementContentWidth } from './utils';
+import ResizeObserver from 'resize-observer-polyfill';
+
+import ToggleButton from './ToggleButton';
 
 const Root = styled.div`
   min-width: 250px;
@@ -8,11 +11,13 @@ const Root = styled.div`
   white-space: nowrap;
 `;
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  display: inline-block;
+`;
 
 const Item = styled.div`
   display: inline-block;
-  padding: ${(props: Props) =>
+  padding: ${(props: { itemPadding: string }) =>
     props.itemPadding ? props.itemPadding : '4rem 2rem'};
 
   &:first-child {
@@ -20,66 +25,106 @@ const Item = styled.div`
   }
 `;
 
-// Component props
 interface Props {
-  children: React.ReactNode;
+  children: Array<React.ReactNode>;
   itemPadding: string;
+  offset: number;
+  iconSetting: {
+    color: string;
+    size: number;
+    hoverColor: string;
+  };
 }
 
-// Component state
 interface State {
   resizeId: any;
+  children: Array<React.ReactNode>;
+  dropdownItems: Array<React.ReactNode>;
+  lastItemWidth: number | null;
 }
 
 export default class PriorityNav extends React.Component<Props, State> {
+  static defaultProps = {
+    offset: 110,
+  };
   state = {
     resizeId: null,
+    children: this.props.children,
+    dropdownItems: [],
+    lastItemWidth: null,
   };
+  outerNav: HTMLDivElement;
   nav: HTMLDivElement;
-  items: Array<HTMLElement> = [];
+  items: Map<number, HTMLElement> = new Map();
 
   componentDidMount() {
-    window.addEventListener('resize', this.onResize);
     this.doesItFit();
+    const resizeObserver = new ResizeObserver(this.onResize);
+    resizeObserver.observe(this.outerNav);
   }
 
-  onResize = (e: Event) => {
-    // if (this.state.resizeId) {
-    //   // tslint:disable-next-line
-      clearTimeout(this.state.resizeId!)
-    // };
+  componentWillUnmount() {
+    // window.removeEventListener('resize', this.onResize);
+    clearInterval(this.state.resizeId!);
+  }
+
+  onResize = () => {
+    clearTimeout(this.state.resizeId!);
     this.setState({
       resizeId: setTimeout(this.doesItFit, 50),
     });
   };
 
   doesItFit = () => {
-    const total = this.nav.scrollWidth;
-    const totalWidth = this.nav.offsetWidth;
-    // check if last item width
-    const toRemove = this.items.reduce((remove, item) => {
-      console.log(remove, item);
-      return remove;
-    })
-    // while (this.items.size > 0 && total > totalWidth) {
-    //   this.moveItemToList();
-    // }
-      // console.log(this.items.get(this.items.size - 1)!.clientWidth);
+    if (this.nav) {
+      const outerWidth = this.outerNav.offsetWidth;
+      const totalWidth = this.nav.offsetWidth;
+      // check if last item width
+      if (this.items.size > 0 && totalWidth > outerWidth) {
+        this.moveItemToList();
+      } else if (
+        this.state.dropdownItems.length > 0 &&
+        outerWidth > totalWidth + this.state.lastItemWidth! + this.props.offset
+      ) {
+        this.moveItemToNav();
+      }
+    }
   };
 
   moveItemToList = () => {
-    console.log('haha');
-  }
+    this.setState((prevState, props) => {
+      const children = [...prevState.children];
+      const lastItem = children.splice(-1, 1);
+      return {
+        children,
+        dropdownItems: lastItem.concat(prevState.dropdownItems),
+        lastItemWidth: this.items.get(prevState.children.length - 1)!
+          .clientWidth,
+      };
+    });
+  };
+
+  moveItemToNav = () => {
+    this.setState((prevState, props) => {
+      const dropdownItems = [...prevState.dropdownItems];
+      const firstItemFromList = dropdownItems.splice(0, 1);
+      return {
+        children: [...prevState.children].concat(firstItemFromList),
+        dropdownItems,
+      };
+    });
+  };
 
   renderChildren = (props: Props) => {
     return React.Children.map(
-      this.props.children,
+      this.state.children,
       (child: React.ReactNode, i: number) => {
         return (
           <Item
             innerRef={s => {
-              this.items.push(s);
+              this.items.set(i, s);
             }}
+            key={i}
             itemPadding={props.itemPadding}
           >
             {child}
@@ -91,14 +136,21 @@ export default class PriorityNav extends React.Component<Props, State> {
 
   public render() {
     return (
-      <Root>
+      <Root
+        innerRef={s => {
+          this.outerNav = s;
+        }}
+      >
         <Wrapper
           innerRef={s => {
             this.nav = s;
           }}
         >
           {this.renderChildren(this.props)}
+          {this.state.dropdownItems.length > 0 && <ToggleButton {...this.props.iconSetting} />}
         </Wrapper>
+        {this.state.dropdownItems.length > 0 &&
+          this.state.dropdownItems.map((item, i) => <div key={i}>{item}</div>)}
       </Root>
     );
   }
