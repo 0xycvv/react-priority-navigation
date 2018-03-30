@@ -7330,11 +7330,7 @@ ripemd160@^2.0.0, ripemd160@^2.0.1:
     hash-base "^2.0.0"
     inherits "^2.0.1"
 
-<<<<<<< HEAD
-rollup-plugin-commonjs@^9.1.0:
-=======
 rollup-plugin-commonjs@9.1.0:
->>>>>>> production
   version "9.1.0"
   resolved "https://registry.yarnpkg.com/rollup-plugin-commonjs/-/rollup-plugin-commonjs-9.1.0.tgz#468341aab32499123ee9a04b22f51d9bf26fdd94"
   dependencies:
@@ -7343,11 +7339,7 @@ rollup-plugin-commonjs@9.1.0:
     resolve "^1.5.0"
     rollup-pluginutils "^2.0.1"
 
-<<<<<<< HEAD
-rollup-plugin-typescript2@^0.12.0:
-=======
 rollup-plugin-typescript2@0.12.0:
->>>>>>> production
   version "0.12.0"
   resolved "https://registry.yarnpkg.com/rollup-plugin-typescript2/-/rollup-plugin-typescript2-0.12.0.tgz#c6cd4d6c2fff954ba475ed5faec3c08544a9fc71"
   dependencies:
@@ -7363,11 +7355,7 @@ rollup-pluginutils@^2.0.1:
     estree-walker "^0.3.0"
     micromatch "^2.3.11"
 
-<<<<<<< HEAD
-rollup@^0.57.1:
-=======
 rollup@0.57.1:
->>>>>>> production
   version "0.57.1"
   resolved "https://registry.yarnpkg.com/rollup/-/rollup-0.57.1.tgz#0bb28be6151d253f67cf4a00fea48fb823c74027"
   dependencies:
