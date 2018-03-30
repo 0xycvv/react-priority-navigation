@@ -84,7 +84,7 @@ export default class PriorityNav extends React.Component<Props, State> {
     this.setState({
       resizeId: setTimeout(this.doesItFit, this.props.delay),
     });
-  };
+  }
 
   doesItFit = () => {
     if (this.nav) {
@@ -102,7 +102,7 @@ export default class PriorityNav extends React.Component<Props, State> {
         this.moveItemToNav();
       }
     }
-  };
+  }
 
   moveItemToList = () => {
     this.setState((prevState, props) => {
@@ -117,7 +117,7 @@ export default class PriorityNav extends React.Component<Props, State> {
         ],
       };
     });
-  };
+  }
 
   moveItemToNav = () => {
     this.setState((prevState, props) => {
@@ -129,13 +129,13 @@ export default class PriorityNav extends React.Component<Props, State> {
         lastItemWidth: prevState.lastItemWidth.splice(0, 1),
       };
     });
-  };
+  }
 
   toggleShow = () => {
     this.setState((prevState, props) => ({
       show: !prevState.show,
     }));
-  };
+  }
 
   renderChildren = (props: Props) => {
     return React.Children.map(
@@ -154,7 +154,7 @@ export default class PriorityNav extends React.Component<Props, State> {
         );
       },
     );
-  };
+  }
 
   public render() {
     return (
@@ -176,7 +176,7 @@ export default class PriorityNav extends React.Component<Props, State> {
               action={['click']}
               popupAlign={{
                 points: ['tl', 'bl'],
-                offset: [0, 3]
+                offset: [0, 3],
               }}
               popup={
                 <DropdownList>
