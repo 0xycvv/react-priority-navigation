@@ -35,4 +35,5 @@ jobs:
 
       # build storybook!
       - run: yarn run build-storybook
+      - run: yarn run build
 
