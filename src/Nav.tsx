@@ -32,12 +32,41 @@ const Item = styled.div`
   }
 `;
 
+const PLACEMENT = {
+  left: {
+    points: ['cr', 'cl'],
+  },
+  right: {
+    points: ['cl', 'cr'],
+  },
+  top: {
+    points: ['bc', 'tc'],
+  },
+  bottom: {
+    points: ['tc', 'bc'],
+  },
+  topLeft: {
+    points: ['bl', 'tl'],
+  },
+  topRight: {
+    points: ['br', 'tr'],
+  },
+  bottomRight: {
+    points: ['tr', 'br'],
+  },
+  bottomLeft: {
+    points: ['tl', 'bl'],
+  },
+};
+
+
 interface Props {
   children: Array<React.ReactNode>;
   itemPadding: string;
   minWidth: string;
   offset: number;
   delay: number;
+  placement: 'left' | 'right' | 'top' | 'bottom' | 'topLeft' | 'topRight' | 'bottomRight' | 'bottomLeft';
   navSetting: {
     background: string;
   };
@@ -62,6 +91,7 @@ export default class PriorityNav extends React.Component<Props, State> {
   static defaultProps = {
     offset: 0,
     delay: 0,
+    placement: 'bottomRight',
   };
   state = {
     resizeId: null,
@@ -192,7 +222,7 @@ export default class PriorityNav extends React.Component<Props, State> {
             <Trigger
               action={['click']}
               popupAlign={{
-                points: ['tl', 'bl'],
+                points: PLACEMENT[this.props.placement].points,
                 offset: [0, 3],
               }}
               popup={this.renderDropdownList()}
