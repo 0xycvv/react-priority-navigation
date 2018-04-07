@@ -18,7 +18,8 @@
   "license": "ISC",
   "dependencies": {
     "rc-trigger": "^2.3.4",
-    "resize-observer-polyfill": "^1.5.0"
+    "resize-observer-polyfill": "^1.5.0",
+    "uniqid": "^4.1.1"
   },
   "devDependencies": {
     "@storybook/addon-actions": "3.4.0",
