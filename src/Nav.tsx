@@ -25,7 +25,7 @@ const Wrapper = styled.div`
 const Item = styled.div`
   display: inline-block;
   padding: ${(props: { itemPadding: string }) =>
-    props.itemPadding ? props.itemPadding : '20px'};
+    props.itemPadding ? props.itemPadding : 'unset'};
 
   &:first-child {
     padding-left: 0;
@@ -59,9 +59,12 @@ const PLACEMENT = {
   },
 };
 
-
-export default class PriorityNav extends React.Component<PriorityNavProps, PriorityNavState> {
+export default class PriorityNav extends React.Component<
+  PriorityNavProps,
+  PriorityNavState
+> {
   static defaultProps = {
+    itemPadding: 0,
     offset: 0,
     delay: 0,
     placement: 'bottomRight',
@@ -214,4 +217,3 @@ export default class PriorityNav extends React.Component<PriorityNavProps, Prior
     );
   }
 }
-
