@@ -5,7 +5,7 @@ import ResizeObserver from 'resize-observer-polyfill';
 import 'rc-trigger/assets/index.css';
 import { time } from 'uniqid';
 
-import { ButtonProps } from './index.d';
+import { ButtonProps, PriorityNavProps, PriorityNavState } from './index.d';
 import ToggleButton from './ToggleButton';
 import DropdownList from './DropdownList';
 
@@ -25,7 +25,7 @@ const Wrapper = styled.div`
 const Item = styled.div`
   display: inline-block;
   padding: ${(props: { itemPadding: string }) =>
-    props.itemPadding ? props.itemPadding : '20px'};
+    props.itemPadding ? props.itemPadding : 'unset'};
 
   &:first-child {
     padding-left: 0;
@@ -59,36 +59,12 @@ const PLACEMENT = {
   },
 };
 
-
-interface Props {
-  children: Array<React.ReactNode>;
-  itemPadding: string;
-  minWidth: string;
-  offset: number;
-  delay: number;
-  placement: 'left' | 'right' | 'top' | 'bottom' | 'topLeft' | 'topRight' | 'bottomRight' | 'bottomLeft';
-  navSetting: {
-    background: string;
-  };
-  iconSetting: {
-    color: string;
-    size: number;
-    hoverColor: string;
-  };
-  icon: () => React.ReactElement<HTMLElement>;
-  dropdownList: (children: React.ReactNode) => React.ReactElement<HTMLElement>;
-}
-
-interface State {
-  resizeId: number | null;
-  children: Array<React.ReactNode>;
-  dropdownItems: Array<React.ReactNode>;
-  lastItemWidth: Array<number>;
-  show: boolean;
-}
-
-export default class PriorityNav extends React.Component<Props, State> {
+export default class PriorityNav extends React.Component<
+  PriorityNavProps,
+  PriorityNavState
+> {
   static defaultProps = {
+    itemPadding: 0,
     offset: 0,
     delay: 0,
     placement: 'bottomRight',
@@ -184,7 +160,7 @@ export default class PriorityNav extends React.Component<Props, State> {
     );
   };
 
-  renderChildren = (props: Props) => {
+  renderChildren = (props: PriorityNavProps) => {
     return React.Children.map(
       this.state.children,
       (child: React.ReactNode, i: number) => {
@@ -241,4 +217,3 @@ export default class PriorityNav extends React.Component<Props, State> {
     );
   }
 }
-
