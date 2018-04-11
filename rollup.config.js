@@ -5,12 +5,12 @@ import postcss from 'rollup-plugin-postcss'
 import pkg from './package.json';
 
 export default {
-  entry: './src/index.tsx',
+  input: './src/index.tsx',
   output: {
     file: 'dist/bundle.js',
     format: 'cjs'
   },
-  external: ['react'].concat(Object.keys(pkg.dependencies)),
+  external: ['react'].concat(Object.keys(pkg.dependencies)).concat(Object.keys(pkg.peerDependencies)),
 	plugins: [
     typescript(/*{ plugin options }*/),
     resolve(),
