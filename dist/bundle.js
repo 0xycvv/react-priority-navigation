@@ -4841,7 +4841,7 @@ const Wrapper = styled.div `
 `;
 const Item = styled.div `
   display: inline-block;
-  padding: ${(props) => props.itemPadding ? props.itemPadding : '20px'};
+  padding: ${(props) => props.itemPadding ? props.itemPadding : 'unset'};
 
   &:first-child {
     padding-left: 0;
@@ -4974,6 +4974,7 @@ class PriorityNav extends React.Component {
     }
 }
 PriorityNav.defaultProps = {
+    itemPadding: 0,
     offset: 0,
     delay: 0,
     placement: 'bottomRight',
