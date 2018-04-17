@@ -35,7 +35,7 @@
     "rollup": "0.57.1",
     "rollup-plugin-commonjs": "9.1.0",
     "rollup-plugin-node-resolve": "3.3.0",
-    "rollup-plugin-postcss": "1.5.1",
+    "rollup-plugin-postcss": "1.6.1",
     "rollup-plugin-typescript2": "0.13.0",
     "styled-components": "3.2.5",
     "tslint-react": "3.5.1",
