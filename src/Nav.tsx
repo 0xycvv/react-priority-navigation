@@ -24,8 +24,8 @@ const Wrapper = styled.div`
 
 const Item = styled.div`
   display: inline-block;
-  padding: ${(props: { itemPadding: string }) =>
-    props.itemPadding ? props.itemPadding : 'unset'};
+  padding: ${(props: { itempadding: string }) =>
+    props.itempadding ? props.itempadding : 'unset'};
 
   &:first-child {
     padding-left: 0;
@@ -160,19 +160,21 @@ export default class PriorityNav extends React.Component<
     );
   };
 
-  renderChildren = (props: PriorityNavProps) => {
+  renderChildren = () => {
+    const { children, itemPadding, ...props } = this.props;
     return React.Children.map(
       this.state.children,
-      (child: React.ReactNode, i: number) => {
+      // tslint:disable-next-line
+      (child: React.ReactElement<any>, i: number) => {
         return (
           <Item
             innerRef={s => {
               this.items.set(i, s);
             }}
             key={time()}
-            itemPadding={props.itemPadding}
+            itempadding={itemPadding}
           >
-            {child}
+            {React.cloneElement(child, {...props})}
           </Item>
         );
       },
@@ -193,7 +195,7 @@ export default class PriorityNav extends React.Component<
             this.nav = s;
           }}
         >
-          {this.renderChildren(this.props)}
+          {this.renderChildren()}
           {this.state.dropdownItems.length > 0 && (
             <Trigger
               action={['click']}
