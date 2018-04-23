@@ -21,7 +21,7 @@
     "uniqid": "^4.1.1"
   },
   "peerDependencies": {
-    "styled-components": "^2.4.0"
+    "styled-components": "^3.0.1"
   },
   "devDependencies": {
     "@storybook/addon-actions": "3.4.2",
@@ -40,7 +40,7 @@
     "rollup-plugin-node-resolve": "3.3.0",
     "rollup-plugin-postcss": "1.6.1",
     "rollup-plugin-typescript2": "0.13.0",
-    "styled-components": "3.2.5",
+    "styled-components": "3.2.6",
     "tslint-react": "3.5.1",
     "typescript": "2.8.3"
   }
