@@ -1,6 +1,6 @@
 {
   "name": "react-priority-navigation",
-  "version": "0.0.2",
+  "version": "0.0.6",
   "description": "priority navigation component for react",
   "main": "dist/bundle.js",
   "typings": "src/index.d.ts",
@@ -19,6 +19,9 @@
     "rc-trigger": "^2.3.4",
     "resize-observer-polyfill": "^1.5.0",
     "uniqid": "^4.1.1"
+  },
+  "peerDependencies": {
+    "styled-components": "^2.4.0"
   },
   "devDependencies": {
     "@storybook/addon-actions": "3.4.2",
