@@ -198,11 +198,12 @@ class PriorityNav extends React.Component {
             }));
         };
         this.renderDropdownList = () => {
-            let children = this.state.dropdownItems.map(item => item);
+            const { children } = this.props;
+            let dropdownChildren = this.state.dropdownItems.map(item => item);
             if (this.props.dropdownList) {
-                return this.props.dropdownList(children);
+                return this.props.dropdownList(dropdownChildren, this.props);
             }
-            return (React.createElement(DropdownList, null, children.map(item => React.createElement("div", { key: uniqid.time() }, item))));
+            return (React.createElement(DropdownList, null, dropdownChildren.map(item => React.createElement("div", Object.assign({ key: uniqid.time() }, this.props), item))));
         };
         this.renderChildren = () => {
             const _a = this.props, { children, itemPadding } = _a, props = __rest(_a, ["children", "itemPadding"]);

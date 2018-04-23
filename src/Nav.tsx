@@ -149,13 +149,14 @@ export default class PriorityNav extends React.Component<
   };
 
   renderDropdownList = () => {
-    let children = this.state.dropdownItems.map(item => item);
+    const { children } = this.props;
+    let dropdownChildren = this.state.dropdownItems.map(item => item);
     if (this.props.dropdownList) {
-      return this.props.dropdownList(children);
+      return this.props.dropdownList(dropdownChildren, this.props);
     }
     return (
       <DropdownList>
-        {children.map(item => <div key={time()}>{item}</div>)}
+        {dropdownChildren.map(item => <div key={time()} {...this.props}>{item}</div>)}
       </DropdownList>
     );
   };
