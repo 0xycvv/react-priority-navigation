@@ -174,7 +174,7 @@ export default class PriorityNav extends React.Component<
             key={time()}
             itempadding={itemPadding}
           >
-            {React.cloneElement(child, {...props})}
+            {React.cloneElement(child, props)}
           </Item>
         );
       },
