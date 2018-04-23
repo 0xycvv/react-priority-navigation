@@ -35,7 +35,7 @@ import PriorityNav, { ToggleButton } from 'react-priority-navigation';
 | `delay`        | Number                                                         | Delay time trigger                                 | 0             |
 | `placement`    | String                                                         | Placement of the dropdown                          | 'bottomRight' |
 | `icon`         | (props: IconSetting) => React.ReactElement<HTMLElement>        | Use this to render custom Icon with `ToggleButton` | null          |
-| `dropdownList` | (children: React.ReactNode) => React.ReactElement<HTMLElement> | custom dropdown, take children as props            | null          |
+| `dropdownList` | (children: React.ReactNode, props: any) => React.ReactElement<HTMLElement> | custom dropdown, take children as props            | null          |
 
 ### ToggleButton
 

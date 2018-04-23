@@ -21,7 +21,7 @@ export interface PriorityNavProps {
   };
   iconSetting: IconSetting;
   icon: (props: IconSetting) => React.ReactElement<HTMLElement>;
-  dropdownList: (children: React.ReactNode) => React.ReactElement<HTMLElement>;
+  dropdownList: (children: React.ReactNode, props: any) => React.ReactElement<HTMLElement>;
 }
 
 export interface PriorityNavState {

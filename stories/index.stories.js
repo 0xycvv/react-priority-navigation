@@ -153,7 +153,7 @@ storiesOf('PriorityNav', module).add('Basic', () => {
       <PriorityNav
         dropdownList={(children) => (
           <CustomDropdown>
-            {children.map(item => <CustomItem>{item}</CustomItem>)}
+            {children.map((item, props) => <CustomItem {...props}>{item}</CustomItem>)}
           </CustomDropdown>)
         }
       >
