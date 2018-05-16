@@ -17,9 +17,9 @@ import PriorityNav, { ToggleButton } from 'react-priority-navigation';
     </CustomDropdown>
   )}
 >
-  <button>I'm a Button ⏹ ️</button>
+  <button>I am a Button ⏹ ️</button>
   <a>This is Link 🔗</a>
-  <div>I'm a Div!</div>
+  <div>I am a Div!</div>
   <div>Looooong Div🐢🐢🐢🐢</div>
   <div>🉑</div>
 </PriorityNav>;
