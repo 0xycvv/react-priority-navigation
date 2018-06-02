@@ -34,7 +34,7 @@
     "awesome-typescript-loader": "4.0.1",
     "react": "16.4.0",
     "react-dom": "16.4.0",
-    "react-scripts-ts": "2.15.1",
+    "react-scripts-ts": "2.16.0",
     "rollup": "0.59.0",
     "rollup-plugin-commonjs": "9.1.0",
     "rollup-plugin-node-resolve": "3.3.0",
