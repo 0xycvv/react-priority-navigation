@@ -8503,11 +8503,15 @@ uniq@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/uniq/-/uniq-1.0.1.tgz#b31c5ae8254844a3a8281541ce2b04b865a734ff"
 
-uniqid@^4.0.0, uniqid@^4.1.1:
+uniqid@^4.0.0:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/uniqid/-/uniqid-4.1.1.tgz#89220ddf6b751ae52b5f72484863528596bb84c1"
   dependencies:
     macaddress "^0.2.8"
+
+uniqid@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/uniqid/-/uniqid-5.0.0.tgz#2d222c799d2e8d8852d1fb52c8b5944cd2656257"
 
 uniqs@^2.0.0:
   version "2.0.0"
