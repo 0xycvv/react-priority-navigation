@@ -1,7 +1,3 @@
-import * as React from 'react';
-
-declare class PriorityNav extends React.Component<PriorityNavProps, PriorityNavState> {}
-
 interface IconSetting {
   color: string;
   size: number;
@@ -38,7 +34,3 @@ export interface ButtonProps {
   hoverColor?: string;
   children?: React.ReactNode
 }
-
-export const ToggleButton: React.StatelessComponent<ButtonProps>;
-
-export default PriorityNav;

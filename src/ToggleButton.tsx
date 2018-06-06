@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { ButtonProps } from './index.d';
+import { ButtonProps } from './types';
 
 const Root = styled.div`
   display: inline-block;

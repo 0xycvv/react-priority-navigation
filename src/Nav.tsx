@@ -5,7 +5,7 @@ import ResizeObserver from 'resize-observer-polyfill';
 import 'rc-trigger/assets/index.css';
 import { time } from 'uniqid';
 
-import { ButtonProps, PriorityNavProps, PriorityNavState } from './index.d';
+import { ButtonProps, PriorityNavProps, PriorityNavState } from './types';
 import ToggleButton from './ToggleButton';
 import DropdownList from './DropdownList';
 
@@ -18,18 +18,22 @@ const Root = styled.div`
 
 const Wrapper = styled.div`
   display: inline-block;
-  background: ${(props: { background: string }) =>
+  background: ${(props: { background?: string }) =>
     props.background ? props.background : 'unset'};
 `;
 
 const Item = styled.div`
   display: inline-block;
-  padding: ${(props: { itempadding: string }) =>
-    props.itempadding ? props.itempadding : 'unset'};
+  padding: ${(props: { spaceBetween?: string }) =>
+    props.spaceBetween ? props.spaceBetween : 'unset'};
 
   &:first-child {
     padding-left: 0;
   }
+`;
+
+const DropdownListItem = styled(Item)`
+  display: block;
 `;
 
 const PLACEMENT = {
@@ -79,15 +83,17 @@ export default class PriorityNav extends React.Component<
   outerNav: HTMLDivElement;
   nav: HTMLDivElement;
   items: Map<number, HTMLElement> = new Map();
+  resizeObserver: ResizeObserver;
 
   componentDidMount() {
     this.doesItFit();
-    const resizeObserver = new ResizeObserver(this.onResize);
-    resizeObserver.observe(this.outerNav);
+    this.resizeObserver = new ResizeObserver(this.onResize);
+    this.resizeObserver.observe(this.outerNav);
   }
 
   componentWillUnmount() {
     window.clearInterval(this.state.resizeId!);
+    this.resizeObserver.unobserve(this.outerNav);
   }
 
   onResize = () => {
@@ -156,7 +162,7 @@ export default class PriorityNav extends React.Component<
     }
     return (
       <DropdownList>
-        {dropdownChildren.map(item => <div key={time()} {...this.props}>{item}</div>)}
+        {dropdownChildren.map(item => <DropdownListItem key={time()} {...this.props}>{item}</DropdownListItem>)}
       </DropdownList>
     );
   };
@@ -173,7 +179,7 @@ export default class PriorityNav extends React.Component<
               this.items.set(i, s);
             }}
             key={time()}
-            itempadding={itemPadding}
+            spaceBetween={itemPadding}
           >
             {React.cloneElement(child, props)}
           </Item>

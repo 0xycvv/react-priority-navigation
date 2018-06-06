@@ -102,11 +102,14 @@ const Wrapper = styled.div `
 `;
 const Item = styled.div `
   display: inline-block;
-  padding: ${(props) => props.itempadding ? props.itempadding : 'unset'};
+  padding: ${(props) => props.spaceBetween ? props.spaceBetween : 'unset'};
 
   &:first-child {
     padding-left: 0;
   }
+`;
+const DropdownListItem = styled(Item) `
+  display: block;
 `;
 const PLACEMENT = {
     left: {
@@ -203,7 +206,7 @@ class PriorityNav extends React.Component {
             if (this.props.dropdownList) {
                 return this.props.dropdownList(dropdownChildren, this.props);
             }
-            return (React.createElement(DropdownList, null, dropdownChildren.map(item => React.createElement("div", Object.assign({ key: uniqid.time() }, this.props), item))));
+            return (React.createElement(DropdownList, null, dropdownChildren.map(item => React.createElement(DropdownListItem, Object.assign({ key: uniqid.time() }, this.props), item))));
         };
         this.renderChildren = () => {
             const _a = this.props, { children, itemPadding } = _a, props = __rest(_a, ["children", "itemPadding"]);
@@ -212,17 +215,18 @@ class PriorityNav extends React.Component {
             (child, i) => {
                 return (React.createElement(Item, { innerRef: s => {
                         this.items.set(i, s);
-                    }, key: uniqid.time(), itempadding: itemPadding }, React.cloneElement(child, props)));
+                    }, key: uniqid.time(), spaceBetween: itemPadding }, React.cloneElement(child, props)));
             });
         };
     }
     componentDidMount() {
         this.doesItFit();
-        const resizeObserver = new ResizeObserver(this.onResize);
-        resizeObserver.observe(this.outerNav);
+        this.resizeObserver = new ResizeObserver(this.onResize);
+        this.resizeObserver.observe(this.outerNav);
     }
     componentWillUnmount() {
         window.clearInterval(this.state.resizeId);
+        this.resizeObserver.unobserve(this.outerNav);
     }
     render() {
         return (React.createElement(Root$2, { minWidth: this.props.minWidth, innerRef: s => {

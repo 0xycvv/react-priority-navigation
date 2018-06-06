@@ -10,7 +10,7 @@ export default {
     file: 'dist/bundle.js',
     format: 'cjs'
   },
-  external: ['react'].concat(Object.keys(pkg.dependencies)).concat(Object.keys(pkg.peerDependencies)),
+  external: ['react'].concat(Object.keys(pkg.dependencies), Object.keys(pkg.peerDependencies)),
 	plugins: [
     typescript(/*{ plugin options }*/),
     resolve(),

@@ -83,7 +83,7 @@ class DemoWrapper extends Component {
 
   componentWillUnmount() {
     window.removeEventListener('mousemove', this.handleDrag);
-    window.removeEventListener('mouseup', this.handleDrag);
+    window.removeEventListener('mouseup', this.handleDragEnd);
   }
 
   handleDragEnd = () => {
@@ -153,7 +153,7 @@ storiesOf('PriorityNav', module).add('Basic', () => {
       <PriorityNav
         dropdownList={(children) => (
           <CustomDropdown>
-            {children.map((item, props) => <CustomItem {...props}>{item}</CustomItem>)}
+            {children.map((item, props) => <CustomItem {...props} key={item.children}>{item}</CustomItem>)}
           </CustomDropdown>)
         }
       >
