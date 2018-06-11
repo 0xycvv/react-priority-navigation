@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-"@babel/cli@^7.0.0-beta.47":
+"@babel/cli@7.0.0-beta.47":
   version "7.0.0-beta.47"
   resolved "https://registry.yarnpkg.com/@babel/cli/-/cli-7.0.0-beta.47.tgz#e00cc40ffd9084a5243c8fbded3f5049bc970e4c"
   dependencies:
@@ -29,7 +29,7 @@
   dependencies:
     "@babel/highlight" "7.0.0-beta.42"
 
-"@babel/core@^7.0.0-beta.47":
+"@babel/core@7.0.0-beta.47":
   version "7.0.0-beta.47"
   resolved "https://registry.yarnpkg.com/@babel/core/-/core-7.0.0-beta.47.tgz#b9c164fb9a1e1083f067c236a9da1d7a7d759271"
   dependencies:
@@ -236,7 +236,7 @@
     "@babel/helper-remap-async-to-generator" "7.0.0-beta.47"
     "@babel/plugin-syntax-async-generators" "7.0.0-beta.47"
 
-"@babel/plugin-proposal-class-properties@7.0.0-beta.47", "@babel/plugin-proposal-class-properties@^7.0.0-beta.47":
+"@babel/plugin-proposal-class-properties@7.0.0-beta.47":
   version "7.0.0-beta.47"
   resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-class-properties/-/plugin-proposal-class-properties-7.0.0-beta.47.tgz#08c1a1dfc92d0f5c37b39096c6fb883e1ca4b0f5"
   dependencies:
@@ -538,7 +538,7 @@
     "@babel/helper-regex" "7.0.0-beta.47"
     regexpu-core "^4.1.3"
 
-"@babel/preset-env@^7.0.0-beta.47":
+"@babel/preset-env@7.0.0-beta.47":
   version "7.0.0-beta.47"
   resolved "https://registry.yarnpkg.com/@babel/preset-env/-/preset-env-7.0.0-beta.47.tgz#a3dab3b5fac4de56e3510bdbcb528f1cbdedbe2d"
   dependencies:
@@ -582,7 +582,7 @@
     invariant "^2.2.2"
     semver "^5.3.0"
 
-"@babel/preset-react@^7.0.0-beta.47":
+"@babel/preset-react@7.0.0-beta.47":
   version "7.0.0-beta.47"
   resolved "https://registry.yarnpkg.com/@babel/preset-react/-/preset-react-7.0.0-beta.47.tgz#888bd3b7e1caffa89cdd639687227c51bd0a2e99"
   dependencies:
@@ -593,7 +593,7 @@
     "@babel/plugin-transform-react-jsx-self" "7.0.0-beta.47"
     "@babel/plugin-transform-react-jsx-source" "7.0.0-beta.47"
 
-"@babel/preset-stage-3@^7.0.0-beta.47":
+"@babel/preset-stage-3@7.0.0-beta.47":
   version "7.0.0-beta.47"
   resolved "https://registry.yarnpkg.com/@babel/preset-stage-3/-/preset-stage-3-7.0.0-beta.47.tgz#17028f3b5dddc548d80404c86ed62622f601597b"
   dependencies:
@@ -606,7 +606,7 @@
     "@babel/plugin-syntax-dynamic-import" "7.0.0-beta.47"
     "@babel/plugin-syntax-import-meta" "7.0.0-beta.47"
 
-"@babel/preset-typescript@^7.0.0-beta.47":
+"@babel/preset-typescript@7.0.0-beta.47":
   version "7.0.0-beta.47"
   resolved "https://registry.yarnpkg.com/@babel/preset-typescript/-/preset-typescript-7.0.0-beta.47.tgz#d81fc37dca3bea1213f2818f9df79ea0ffadd6cb"
   dependencies:
@@ -1295,6 +1295,10 @@ babel-code-frame@6.26.0, babel-code-frame@^6.11.0, babel-code-frame@^6.22.0, bab
     esutils "^2.0.2"
     js-tokens "^3.0.2"
 
+babel-core@7.0.0-bridge.0:
+  version "7.0.0-bridge.0"
+  resolved "https://registry.yarnpkg.com/babel-core/-/babel-core-7.0.0-bridge.0.tgz#95a492ddd90f9b4e9a4a1da14eb335b87b634ece"
+
 babel-core@^6.0.0, babel-core@^6.24.1, babel-core@^6.26.0:
   version "6.26.0"
   resolved "https://registry.yarnpkg.com/babel-core/-/babel-core-6.26.0.tgz#af32f78b31a6fcef119c87b0fd8d9753f03a0bb8"
@@ -1318,10 +1322,6 @@ babel-core@^6.0.0, babel-core@^6.24.1, babel-core@^6.26.0:
     private "^0.1.7"
     slash "^1.0.0"
     source-map "^0.5.6"
-
-babel-core@^7.0.0-0:
-  version "7.0.0-bridge.0"
-  resolved "https://registry.yarnpkg.com/babel-core/-/babel-core-7.0.0-bridge.0.tgz#95a492ddd90f9b4e9a4a1da14eb335b87b634ece"
 
 babel-generator@^6.18.0, babel-generator@^6.26.0:
   version "6.26.1"
