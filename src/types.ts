@@ -1,27 +1,41 @@
 interface IconSetting {
-  color: string;
-  size: number;
-  hoverColor: string;
+  color?: string;
+  size?: number;
+  hoverColor?: string;
 }
 
-export interface PriorityNavProps {
+export interface PriorityNavProps extends Partial<DefaultProps> {
   children: Array<React.ReactNode>;
-  itemPadding: string;
+  dropdownList: (
+    dropdownItems: any,
+  ) => React.ReactElement<HTMLElement>;
+}
+
+export interface DefaultProps {
+  itemPadding: string | number;
   minWidth: string;
   offset: number;
   delay: number;
-  placement: 'left' | 'right' | 'top' | 'bottom' | 'topLeft' | 'topRight' | 'bottomRight' | 'bottomLeft';
-  // TODO: more to root
+  placement:
+    | 'left'
+    | 'right'
+    | 'top'
+    | 'bottom'
+    | 'topLeft'
+    | 'topRight'
+    | 'bottomRight'
+    | 'bottomLeft';
   navSetting: {
     background: string;
   };
+  isOpen: boolean;
   iconSetting: IconSetting;
-  icon: (props: IconSetting) => React.ReactElement<HTMLElement>;
-  dropdownList: (children: React.ReactNode, props: any) => React.ReactElement<HTMLElement>;
+  icon?: (
+    props: IconSetting,
+  ) => React.ReactElement<HTMLElement>;
 }
 
 export interface PriorityNavState {
-  resizeId: number | null;
   children: Array<React.ReactNode>;
   dropdownItems: Array<React.ReactNode>;
   lastItemWidth: Array<number>;
@@ -32,5 +46,5 @@ export interface ButtonProps {
   color?: string;
   size?: number;
   hoverColor?: string;
-  children?: React.ReactNode
+  children?: React.ReactNode;
 }

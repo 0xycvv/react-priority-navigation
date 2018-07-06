@@ -1,18 +1,25 @@
 {
   "compilerOptions": {
-    "outDir": "build/dist",
+    "outDir": "dist",
     "module": "es6",
-    "target": "es6",
+    "target": "es5",
     "lib": ["es6", "dom"],
     "sourceMap": true,
-    "allowJs": true,
     "jsx": "react",
+    "allowSyntheticDefaultImports": true,
+    "declaration": true,
+    "declarationDir": "dist",
     "moduleResolution": "node",
+    "importHelpers": true,
     "rootDir": "src",
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
+    "skipLibCheck": true,
+    "pretty": true,
+    "esModuleInterop": true,
+    "stripInternal": true,
   },
   "exclude": [
     "node_modules",
@@ -23,8 +30,8 @@
     "jest",
     "src/setupTests.ts"
   ],
-  "types": [
-    "typePatches"
-  ],
-  "include": ["./src/**/*"]
+  "typeAcquisition": {
+    "enable": true
+  },
+  "include": ["src"]
 }

@@ -3,25 +3,29 @@
   "version": "0.1.0",
   "description": "priority navigation component for react",
   "main": "dist/bundle.js",
-  "module": "lib/index.js",
-  "typings": "src/index.d.ts",
+  "module": "dist/bundle.es6.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "start": "react-scripts-ts start",
-    "build": "babel src --out-dir lib --extensions '.ts,.tsx'",
-    "test": "react-scripts-ts test --env=jsdom",
-    "eject": "react-scripts-ts eject",
+    "build": "rm -rf dist && tsc && NODE_ENV=production rollup -c",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "test": "jest"
   },
   "author": "Eric Yip (https://github.com/ericyip)",
   "license": "MIT",
   "dependencies": {
-    "rc-trigger": "^2.3.4",
+    "lodash.debounce": "^4.0.8",
+    "rc-trigger": "^2.5.4",
     "resize-observer-polyfill": "^1.5.0",
     "uniqid": "^4.1.1"
   },
   "peerDependencies": {
-    "styled-components": "^3.0.1"
+    "react": ">= 16.3.0",
+    "react-dom": ">= 15",
+    "styled-components": "^>= 3"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.47",
@@ -33,22 +37,57 @@
     "@babel/preset-typescript": "^7.0.0-beta.47",
     "@storybook/addon-actions": "3.4.6",
     "@storybook/addon-links": "3.4.6",
+    "@storybook/addon-storyshots": "^3.4.8",
     "@storybook/react": "3.4.6",
+    "@types/lodash.debounce": "^4.0.3",
     "@types/node": "9.6.6",
-    "@types/react": "16.0.41",
+    "@types/react": "^16.4.6",
     "@types/react-dom": "16.0.5",
     "@types/storybook__react": "3.0.7",
-    "babel-core": "^7.0.0-0",
-    "react": "16.4.0",
-    "react-dom": "16.4.0",
-    "react-scripts-ts": "2.15.1",
+    "@types/uniqid": "^4.1.2",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^23.2.0",
+    "jest": "^23.3.0",
+    "jest-styled-components": "^5.0.1",
+    "prettier": "^1.13.7",
+    "react": "16.4.1",
+    "react-dom": "16.4.1",
+    "react-test-renderer": "^16.4.1",
     "rollup": "0.59.0",
     "rollup-plugin-commonjs": "9.1.0",
     "rollup-plugin-node-resolve": "3.3.0",
     "rollup-plugin-postcss": "1.6.1",
-    "rollup-plugin-typescript2": "0.14.0",
-    "styled-components": "3.2.6",
+    "styled-components": "3.3.3",
+    "ts-jest": "^23.0.0",
+    "tslint-config-prettier": "^1.13.0",
     "tslint-react": "3.6.0",
-    "typescript": "2.8.3"
+    "typescript": "2.9.2"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest",
+      "^.+\\.js$": "babel-jest"
+    },
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ],
+    "moduleDirectories": [
+      "node_modules",
+      "<rootDir>/src"
+    ],
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
+    },
+    "globals": {
+      "ts-jest": {
+        "tsConfigFile": "tsconfig.jest.json"
+      }
+    }
   }
 }
