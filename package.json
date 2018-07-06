@@ -20,7 +20,7 @@
     "lodash.debounce": "^4.0.8",
     "rc-trigger": "^2.5.4",
     "resize-observer-polyfill": "^1.5.0",
-    "uniqid": "^4.1.1"
+    "uniqid": "^5.0.0"
   },
   "peerDependencies": {
     "react": ">= 16.3.0",
