@@ -1,4 +1,4 @@
-import React, { RefObject } from 'react';
+import * as React from 'react';
 import Trigger from 'rc-trigger';
 import styled from 'styled-components';
 import ResizeObserver from 'resize-observer-polyfill';
@@ -81,8 +81,8 @@ export default class PriorityNav extends React.Component<
     lastItemWidth: [],
     show: false,
   };
-  outerNav: RefObject<HTMLDivElement> = React.createRef();
-  nav: RefObject<HTMLDivElement> = React.createRef();
+  outerNav: React.RefObject<HTMLDivElement> = React.createRef();
+  nav: React.RefObject<HTMLDivElement> = React.createRef();
   items: Map<number, HTMLElement> = new Map();
   resizeObserver: ResizeObserver;
 

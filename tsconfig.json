@@ -18,6 +18,7 @@
     "strictNullChecks": true,
     "skipLibCheck": true,
     "pretty": true,
+    "esModuleInterop": true,
     "stripInternal": true,
   },
   "exclude": [

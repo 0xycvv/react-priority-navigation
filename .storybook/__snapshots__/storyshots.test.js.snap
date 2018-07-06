@@ -1,0 +1,211 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots PriorityNav Custom DropdownList 1`] = `
+.c1 {
+  min-width: 250px;
+  position: relative;
+  white-space: nowrap;
+}
+
+.c2 {
+  display: inline-block;
+  background: unsert;
+}
+
+.c3 {
+  display: inline-block;
+  padding: 0;
+}
+
+.c0 {
+  position: relative;
+  border: 2px solid #fed;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.c4 {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 5px;
+  background: #fed;
+  cursor: col-resize;
+}
+
+.c5 {
+  display: inline-block;
+  padding-left: 10px;
+}
+
+<div>
+  <div
+    className="c0"
+    style={
+      Object {
+        "width": "400px",
+      }
+    }
+  >
+    <div
+      className="c1"
+    >
+      <div
+        className="c2"
+      >
+        <div
+          className="c3"
+        >
+          <button>
+            I'm a Button ⏹ ️
+          </button>
+        </div>
+        <div
+          className="c3"
+        >
+          <a>
+            This is Link 🔗
+          </a>
+        </div>
+        <div
+          className="c3"
+        >
+          <div>
+            I'm a Div!
+          </div>
+        </div>
+        <div
+          className="c3"
+        >
+          <div>
+            Looooong Div🐢🐢🐢🐢
+          </div>
+        </div>
+        <div
+          className="c3"
+        >
+          <div
+            onClick={[Function]}
+          >
+            🉑
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="c4"
+      onMouseDown={[Function]}
+    />
+  </div>
+  <div
+    className="c5"
+  >
+    👈🏼Drag the right bar to resize.
+  </div>
+</div>
+`;
+
+exports[`Storyshots PriorityNav Custom Icon 1`] = `
+.c1 {
+  min-width: 250px;
+  position: relative;
+  white-space: nowrap;
+}
+
+.c2 {
+  display: inline-block;
+  background: unsert;
+}
+
+.c3 {
+  display: inline-block;
+  padding: 0;
+}
+
+.c0 {
+  position: relative;
+  border: 2px solid #fed;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.c4 {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 5px;
+  background: #fed;
+  cursor: col-resize;
+}
+
+.c5 {
+  display: inline-block;
+  padding-left: 10px;
+}
+
+<div>
+  <div
+    className="c0"
+    style={
+      Object {
+        "width": "400px",
+      }
+    }
+  >
+    <div
+      className="c1"
+    >
+      <div
+        className="c2"
+      >
+        <div
+          className="c3"
+        >
+          <button>
+            I'm a Button ⏹ ️
+          </button>
+        </div>
+        <div
+          className="c3"
+        >
+          <a>
+            This is Link 🔗
+          </a>
+        </div>
+        <div
+          className="c3"
+        >
+          <div>
+            I'm a Div!
+          </div>
+        </div>
+        <div
+          className="c3"
+        >
+          <div>
+            Looooong Div🐢🐢🐢🐢
+          </div>
+        </div>
+        <div
+          className="c3"
+        >
+          <div>
+            🉑
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="c4"
+      onMouseDown={[Function]}
+    />
+  </div>
+  <div
+    className="c5"
+  >
+    👈🏼Drag the right bar to resize.
+  </div>
+</div>
+`;

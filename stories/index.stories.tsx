@@ -1,15 +1,11 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import styled from 'styled-components';
 
 import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
-import { linkTo } from '@storybook/addon-links';
+// import { action } from '@storybook/addon-actions';
+// import { linkTo } from '@storybook/addon-links';
 
-import PriorityNav, {
-  ToggleButton,
-  DropdownList,
-} from '../src/index';
-import ArrowDownSVG from './arrow-down.svg';
+import PriorityNav, { ToggleButton } from '../src/';
 
 const Wrapper = styled.div`
   position: relative;
@@ -65,7 +61,10 @@ const CustomItem = styled.div`
   }
 `;
 
-class DemoWrapper extends Component {
+class DemoWrapper extends React.Component<
+  {},
+  { clientX: number | null; diff: number | null; start: number }
+> {
   state = {
     clientX: null,
     diff: null,
