@@ -1,11 +1,10 @@
 {
   "compilerOptions": {
-    "outDir": "build/dist",
+    "outDir": "dist",
     "module": "es6",
     "target": "es5",
     "lib": ["es6", "dom"],
     "sourceMap": true,
-    "allowJs": true,
     "jsx": "react",
     "allowSyntheticDefaultImports": true,
     "declaration": true,
@@ -33,6 +32,5 @@
   "typeAcquisition": {
     "enable": true
   },
-  "typeRoots": ["./@types"],
   "include": ["src"]
 }

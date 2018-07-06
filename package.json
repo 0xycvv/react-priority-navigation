@@ -3,13 +3,13 @@
   "version": "0.1.0",
   "description": "priority navigation component for react",
   "main": "dist/bundle.js",
-  "module": "lib/index.js",
-  "typings": "src/index.d.ts",
+  "module": "dist/bundle.es6.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "start": "react-scripts-ts start",
-    "build": "babel src --out-dir lib --extensions '.ts,.tsx'",
-    "test": "react-scripts-ts test --env=jsdom",
-    "eject": "react-scripts-ts eject",
+    "build": "rm -rf dist && tsc && NODE_ENV=production rollup -c",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
@@ -24,16 +24,9 @@
   "peerDependencies": {
     "react": ">= 16.3.0",
     "react-dom": ">= 15",
-    "styled-components": "^3.0.1"
+    "styled-components": "^>= 3"
   },
   "devDependencies": {
-    "@babel/cli": "^7.0.0-beta.47",
-    "@babel/core": "^7.0.0-beta.47",
-    "@babel/plugin-proposal-class-properties": "^7.0.0-beta.47",
-    "@babel/preset-env": "^7.0.0-beta.47",
-    "@babel/preset-react": "^7.0.0-beta.47",
-    "@babel/preset-stage-3": "^7.0.0-beta.47",
-    "@babel/preset-typescript": "^7.0.0-beta.47",
     "@storybook/addon-actions": "3.4.6",
     "@storybook/addon-links": "3.4.6",
     "@storybook/react": "3.4.6",
@@ -47,7 +40,6 @@
     "prettier": "^1.13.7",
     "react": "16.4.1",
     "react-dom": "16.4.1",
-    "react-scripts-ts": "2.16.0",
     "rollup": "0.59.0",
     "rollup-plugin-commonjs": "9.1.0",
     "rollup-plugin-node-resolve": "3.3.0",

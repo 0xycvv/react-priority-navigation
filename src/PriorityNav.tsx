@@ -27,7 +27,7 @@ const Wrapper = styled.div`
 
 const Item = styled.div`
   display: inline-block;
-  padding: ${({ itemPadding }: { itemPadding: string | number }) =>
+  padding: ${({ itemPadding }: { itemPadding?: string | number }) =>
     itemPadding};
 `;
 
@@ -143,6 +143,7 @@ export default class PriorityNav extends React.Component<
               popup={this.renderDropdownList()}
             >
               {this.props.icon ? (
+                // @ts-ignore
                 React.createElement(this.props.icon, {
                   ...this.props.iconSetting,
                 })
