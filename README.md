@@ -32,7 +32,7 @@ import PriorityNav, { ToggleButton } from 'react-priority-navigation';
 | `itemPadding`  | String                                                                                | Padding of each children                           | 'unset'       |
 | `minWidth`     | String                                                                                | Min width of the nav                               | '250px'       |
 | `offset`       | Number                                                                                | Extra width to trigger                             | 0             |
-| `delay`        | Number                                                                                | Debounce                                           | 0             |
+| `debounce`        | Number                                                                                | Debounce                                           | 0             |
 | `placement`    | 'left', 'right', 'top', 'bottom', 'topLeft', 'topRight', 'bottomRight', 'bottomLeft'; | Placement of the dropdown                          | 'bottomRight' |
 | `isOpen`       | Boolean                                                                               | Dropdown open state                                | false         |
 | `icon`         | (props: IconSetting) => React.ReactElement<HTMLElement>                               | Use this to render custom Icon with `ToggleButton` | null          |
