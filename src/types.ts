@@ -15,7 +15,7 @@ export interface DefaultProps {
   itemPadding: string | number;
   minWidth: string;
   offset: number;
-  delay: number;
+  debounce: number;
   placement:
     | 'left'
     | 'right'
