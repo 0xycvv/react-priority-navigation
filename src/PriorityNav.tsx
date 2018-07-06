@@ -65,7 +65,7 @@ export default class PriorityNav extends React.Component<
   static defaultProps: DefaultProps = {
     itemPadding: 0,
     offset: 0,
-    delay: 0,
+    debounce: 0,
     placement: 'bottomRight',
     minWidth: '250px',
     navSetting: {
@@ -120,7 +120,7 @@ export default class PriorityNav extends React.Component<
       }
     }
     this.doesItFit();
-  }, this.props.delay);
+  }, this.props.debounce);
 
   toggleShow = () => {
     this.setState((prevState, props) => ({
