@@ -33,8 +33,6 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      # build storybook!
-      - run: yarn run build-storybook
       # build
       - run: yarn run build
       # test
