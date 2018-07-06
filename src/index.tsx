@@ -1,3 +1,2 @@
-export { default } from './Nav';
+export { default } from './PriorityNav';
 export { default as ToggleButton } from './ToggleButton';
-export { default as DropdownList } from './DropdownList';

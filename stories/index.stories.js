@@ -5,7 +5,10 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { linkTo } from '@storybook/addon-links';
 
-import PriorityNav, { ToggleButton, DropdownList } from '../src/index';
+import PriorityNav, {
+  ToggleButton,
+  DropdownList,
+} from '../src/index';
 import ArrowDownSVG from './arrow-down.svg';
 
 const Wrapper = styled.div`
@@ -37,8 +40,13 @@ const IconWrapper = styled.div`
 `;
 
 const Icon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M143 352.3L7 216.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0l96.4 96.4 96.4-96.4c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.2 9.4-24.4 9.4-33.8 0z"/></svg>
-)
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+    <path
+      fill="currentColor"
+      d="M143 352.3L7 216.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0l96.4 96.4 96.4-96.4c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.2 9.4-24.4 9.4-33.8 0z"
+    />
+  </svg>
+);
 
 const CustomDropdown = styled.div`
   max-width: 400px;
@@ -115,54 +123,57 @@ class DemoWrapper extends Component {
 
 export default DemoWrapper;
 
-storiesOf('PriorityNav', module).add('Basic', () => {
-  return (
-    <DemoWrapper>
-      <PriorityNav>
-        <button>I'm a Button ⏹ ️</button>
-        <a>This is Link 🔗</a>
-        <div>I'm a Div!</div>
-        <div>Looooong Div🐢🐢🐢🐢</div>
-        <div>🉑</div>
-      </PriorityNav>
-    </DemoWrapper>
-  );
-})
-.add('Custom Icon', () => {
-  return (
-    <DemoWrapper>
-      <PriorityNav
-        icon={(props) => (
-          <ToggleButton {...props}>
-             <Icon />
-          </ToggleButton>
-        )}
-      >
-      <button>I'm a Button ⏹ ️</button>
-        <a>This is Link 🔗</a>
-        <div>I'm a Div!</div>
-        <div>Looooong Div🐢🐢🐢🐢</div>
-        <div>🉑</div>
-      </PriorityNav>
-    </DemoWrapper>
-  )
-})
-.add('Custom DropdownList', () => {
-  return (
-    <DemoWrapper>
-      <PriorityNav
-        dropdownList={(children) => (
-          <CustomDropdown>
-            {children.map((item, props) => <CustomItem {...props} key={item.children}>{item}</CustomItem>)}
-          </CustomDropdown>)
-        }
-      >
-      <button>I'm a Button ⏹ ️</button>
-        <a>This is Link 🔗</a>
-        <div>I'm a Div!</div>
-        <div>Looooong Div🐢🐢🐢🐢</div>
-        <div onClick={() => console.log('onclicked')}>🉑</div>
-      </PriorityNav>
-    </DemoWrapper>
-  )
-})
+storiesOf('PriorityNav', module)
+  .add('Custom DropdownList', () => {
+    return (
+      <DemoWrapper>
+        <PriorityNav
+          dropdownList={children => (
+            <CustomDropdown>
+              {children.map(item => (
+                <CustomItem
+                  key={item.props.children}
+                  {...item.props}
+                />
+              ))}
+            </CustomDropdown>
+          )}
+        >
+          <button>I'm a Button ⏹ ️</button>
+          <a>This is Link 🔗</a>
+          <div>I'm a Div!</div>
+          <div>Looooong Div🐢🐢🐢🐢</div>
+          <div onClick={() => console.log('onclicked')}>🉑</div>
+        </PriorityNav>
+      </DemoWrapper>
+    );
+  })
+  .add('Custom Icon', () => {
+    return (
+      <DemoWrapper>
+        <PriorityNav
+          icon={props => (
+            <ToggleButton {...props}>
+              <Icon />
+            </ToggleButton>
+          )}
+          dropdownList={children => (
+            <CustomDropdown>
+              {children.map(item => (
+                <CustomItem
+                  key={item.props.children}
+                  {...item.props}
+                />
+              ))}
+            </CustomDropdown>
+          )}
+        >
+          <button>I'm a Button ⏹ ️</button>
+          <a>This is Link 🔗</a>
+          <div>I'm a Div!</div>
+          <div>Looooong Div🐢🐢🐢🐢</div>
+          <div>🉑</div>
+        </PriorityNav>
+      </DemoWrapper>
+    );
+  });
