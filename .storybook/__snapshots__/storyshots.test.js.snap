@@ -9,7 +9,7 @@ exports[`Storyshots PriorityNav Custom DropdownList 1`] = `
 
 .c2 {
   display: inline-block;
-  background: unsert;
+  background: unset;
 }
 
 .c3 {
@@ -115,7 +115,7 @@ exports[`Storyshots PriorityNav Custom Icon 1`] = `
 
 .c2 {
   display: inline-block;
-  background: unsert;
+  background: unset;
 }
 
 .c3 {

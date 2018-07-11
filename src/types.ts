@@ -32,7 +32,9 @@ export interface DefaultProps {
   iconSetting: IconSetting;
   icon?: (
     props: IconSetting,
-  ) => React.ReactElement<HTMLElement>;
+  ) =>
+    | React.ReactElement<HTMLElement>
+    | React.ReactElement<HTMLElement>;
 }
 
 export interface PriorityNavState {

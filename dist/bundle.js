@@ -5,7 +5,6 @@ Object.defineProperty(exports, '__esModule', { value: true });
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
 var React = require('react');
-var React__default = _interopDefault(React);
 var styled = _interopDefault(require('styled-components'));
 var Trigger = _interopDefault(require('rc-trigger'));
 var ResizeObserver = _interopDefault(require('resize-observer-polyfill'));
@@ -151,8 +150,8 @@ var PriorityNav = /** @class */ (function (_super) {
             lastItemWidth: [],
             show: false,
         };
-        _this.outerNav = React__default.createRef();
-        _this.nav = React__default.createRef();
+        _this.outerNav = React.createRef();
+        _this.nav = React.createRef();
         _this.items = new Map();
         // tslint:disable-next-line:member-ordering
         _this.doesItFit = debounce(function () {
@@ -171,7 +170,7 @@ var PriorityNav = /** @class */ (function (_super) {
                 }
             }
             _this.doesItFit();
-        }, _this.props.delay);
+        }, _this.props.debounce);
         _this.toggleShow = function () {
             _this.setState(function (prevState, props) { return ({
                 show: !prevState.show,
@@ -207,16 +206,25 @@ var PriorityNav = /** @class */ (function (_super) {
         // -------------------------------------
         //   Render Method
         // -------------------------------------
+        _this.renderIcon = function () {
+            if (_this.props.icon) {
+                if (typeof _this.props.icon === 'function') {
+                    return _this.props.icon(_this.props.iconSetting || {});
+                }
+                return React.createElement(_this.props.icon, _this.props.iconSetting);
+            }
+            return React.createElement(ToggleButton, __assign({}, _this.props.iconSetting));
+        };
         _this.renderDropdownList = function () {
             var dropdownChildren = _this.state.dropdownItems.map(function (item) { return item; });
             return _this.props.dropdownList(dropdownChildren);
         };
         _this.renderChildren = function () {
             var _a = _this.props, children = _a.children, itemPadding = _a.itemPadding, icon = _a.icon, navSetting = _a.navSetting, minWidth = _a.minWidth, props = __rest(_a, ["children", "itemPadding", "icon", "navSetting", "minWidth"]);
-            return React__default.Children.map(_this.state.children, 
+            return React.Children.map(_this.state.children, 
             // tslint:disable-next-line
             function (child, i) {
-                return (React__default.createElement(Item, { innerRef: function (s) {
+                return (React.createElement(Item, { innerRef: function (s) {
                         _this.items.set(i, s);
                     }, itemPadding: itemPadding, key: uniqid.time() }, child));
             });
@@ -236,31 +244,29 @@ var PriorityNav = /** @class */ (function (_super) {
         }
     };
     PriorityNav.prototype.render = function () {
-        return (React__default.createElement(Root$1, { minWidth: this.props.minWidth, innerRef: this.outerNav },
-            React__default.createElement(Wrapper, __assign({}, this.props.navSetting, { innerRef: this.nav }),
+        return (React.createElement(Root$1, { minWidth: this.props.minWidth, innerRef: this.outerNav },
+            React.createElement(Wrapper, __assign({}, this.props.navSetting, { innerRef: this.nav }),
                 this.renderChildren(),
-                this.state.dropdownItems.length > 0 && (React__default.createElement(Trigger, { action: ['click'], popupAlign: {
+                this.state.dropdownItems.length > 0 && (React.createElement(Trigger, { action: ['click'], popupAlign: {
                         points: PLACEMENT[this.props.placement].points,
                         offset: [0, 3],
-                    }, popup: this.renderDropdownList() }, this.props.icon ? (
-                // @ts-ignore
-                React__default.createElement(this.props.icon, __assign({}, this.props.iconSetting))) : (React__default.createElement(ToggleButton, __assign({}, this.props.iconSetting))))))));
+                    }, popup: this.renderDropdownList() }, this.renderIcon())))));
     };
     PriorityNav.defaultProps = {
         itemPadding: 0,
         offset: 0,
-        delay: 0,
+        debounce: 0,
         placement: 'bottomRight',
         minWidth: '250px',
         navSetting: {
-            background: 'unsert',
+            background: 'unset',
         },
         isOpen: false,
         iconSetting: {},
         icon: undefined,
     };
     return PriorityNav;
-}(React__default.Component));
+}(React.Component));
 var templateObject_1$1, templateObject_2, templateObject_3;
 
 exports.default = PriorityNav;

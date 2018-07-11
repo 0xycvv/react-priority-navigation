@@ -69,7 +69,7 @@ export default class PriorityNav extends React.Component<
     placement: 'bottomRight',
     minWidth: '250px',
     navSetting: {
-      background: 'unsert',
+      background: 'unset',
     },
     isOpen: false,
     iconSetting: {},
@@ -142,14 +142,7 @@ export default class PriorityNav extends React.Component<
               }}
               popup={this.renderDropdownList()}
             >
-              {this.props.icon ? (
-                // @ts-ignore
-                React.createElement(this.props.icon, {
-                  ...this.props.iconSetting,
-                })
-              ) : (
-                <ToggleButton {...this.props.iconSetting} />
-              )}
+              {this.renderIcon()}
             </Trigger>
           )}
         </Wrapper>
@@ -191,6 +184,19 @@ export default class PriorityNav extends React.Component<
   // -------------------------------------
   //   Render Method
   // -------------------------------------
+
+  private renderIcon = () => {
+    if (this.props.icon) {
+      if (typeof this.props.icon === 'function') {
+        return this.props.icon(this.props.iconSetting || {});
+      }
+      return React.createElement(
+        this.props.icon,
+        this.props.iconSetting,
+      );
+    }
+    return <ToggleButton {...this.props.iconSetting} />;
+  };
 
   private renderDropdownList = () => {
     const dropdownChildren = this.state.dropdownItems.map(
