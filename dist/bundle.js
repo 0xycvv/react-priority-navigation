@@ -109,8 +109,7 @@ var Wrapper = styled.div(templateObject_2 || (templateObject_2 = __makeTemplateO
     var background = _a.background;
     return background;
 });
-var Item = styled.div(templateObject_3 || (templateObject_3 = __makeTemplateObject(["\n  display: inline-block;\n  padding: ", ";\n"], ["\n  display: inline-block;\n  padding: ",
-    ";\n"])), function (_a) {
+var Item = styled.div(templateObject_3 || (templateObject_3 = __makeTemplateObject(["\n  display: inline-block;\n  padding: ", ";\n"], ["\n  display: inline-block;\n  padding: ", ";\n"])), function (_a) {
     var itemPadding = _a.itemPadding;
     return itemPadding;
 });
@@ -244,7 +243,7 @@ var PriorityNav = /** @class */ (function (_super) {
         }
     };
     PriorityNav.prototype.render = function () {
-        return (React.createElement(Root$1, { minWidth: this.props.minWidth, innerRef: this.outerNav },
+        return (React.createElement(Root$1, { minWidth: this.props.minWidth, innerRef: this.outerNav, className: this.props.className },
             React.createElement(Wrapper, __assign({}, this.props.navSetting, { innerRef: this.nav }),
                 this.renderChildren(),
                 this.state.dropdownItems.length > 0 && (React.createElement(Trigger, { action: ['click'], popupAlign: {

@@ -3,7 +3,7 @@
   "version": "0.2.1",
   "description": "priority navigation component for react",
   "main": "dist/bundle.js",
-  "module": "dist/bundle.es6.js",
+  "module": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
     "dist"
@@ -61,7 +61,12 @@
     "ts-jest": "23.0.0",
     "tslint-config-prettier": "1.13.0",
     "tslint-react": "3.6.0",
+<<<<<<< HEAD
     "typescript": "3.0.1"
+=======
+    "typescript": "2.9.2",
+    "typescript-styled-plugin": "^0.10.0"
+>>>>>>> Fix types error
   },
   "jest": {
     "transform": {

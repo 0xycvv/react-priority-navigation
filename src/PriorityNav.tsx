@@ -25,10 +25,9 @@ const Wrapper = styled.div`
     background};
 `;
 
-const Item = styled.div`
+const Item = styled.div<{ itemPadding?: string | number }>`
   display: inline-block;
-  padding: ${({ itemPadding }: { itemPadding?: string | number }) =>
-    itemPadding};
+  padding: ${({ itemPadding }) => itemPadding};
 `;
 
 const PLACEMENT = {
@@ -130,7 +129,11 @@ export default class PriorityNav extends React.Component<
 
   render() {
     return (
-      <Root minWidth={this.props.minWidth} innerRef={this.outerNav}>
+      <Root
+        minWidth={this.props.minWidth}
+        innerRef={this.outerNav}
+        className={this.props.className}
+      >
         <Wrapper {...this.props.navSetting!} innerRef={this.nav}>
           {this.renderChildren()}
           {this.state.dropdownItems.length > 0 && (

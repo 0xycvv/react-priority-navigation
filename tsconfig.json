@@ -20,6 +20,11 @@
     "pretty": true,
     "esModuleInterop": true,
     "stripInternal": true,
+    "plugins": [
+      {
+        "name": "typescript-styled-plugin"
+      }
+    ]
   },
   "exclude": [
     "node_modules",

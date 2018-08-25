@@ -5,6 +5,7 @@ interface IconSetting {
 }
 
 export interface PriorityNavProps extends Partial<DefaultProps> {
+  className?: string;
   children: Array<React.ReactNode>;
   dropdownList: (
     dropdownItems: any,
