@@ -48,7 +48,7 @@
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "23.4.0",
     "jest": "23.4.0",
-    "jest-styled-components": "5.0.1",
+    "jest-styled-components": "6.3.1",
     "prettier": "1.13.7",
     "react": "16.4.2",
     "react-dom": "16.4.2",
