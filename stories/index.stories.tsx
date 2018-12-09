@@ -11,7 +11,6 @@ const Wrapper = styled.div`
   position: relative;
   border: 2px solid #fed;
   display: inline-block;
-  overflow: hidden;
 `;
 
 const ResizeHandler = styled.div`
@@ -49,6 +48,7 @@ const CustomDropdown = styled.div`
   background: #f5f5f5;
   border: 1px solid #e8e8e8;
   border-radius: 4px;
+  position: absolute;
 `;
 
 const CustomItem = styled.div`
@@ -81,6 +81,7 @@ class DemoWrapper extends React.Component<
 
   handleDrag = e => {
     e.stopPropagation();
+    e.preventDefault();
     this.setState((prevState, props) => {
       return {
         diff: prevState.clientX - e.clientX,
@@ -127,16 +128,18 @@ storiesOf('PriorityNav', module)
     return (
       <DemoWrapper>
         <PriorityNav
-          dropdownList={children => (
-            <CustomDropdown>
-              {children.map(item => (
-                <CustomItem
-                  key={item.props.children}
-                  {...item.props}
-                />
-              ))}
-            </CustomDropdown>
-          )}
+          dropdownList={(children, isOpen) =>
+            isOpen && (
+              <CustomDropdown>
+                {children.map(item => (
+                  <CustomItem
+                    key={item.props.children}
+                    {...item.props}
+                  />
+                ))}
+              </CustomDropdown>
+            )
+          }
         >
           <button>I'm a Button ⏹ ️</button>
           <a>This is Link 🔗</a>
@@ -151,11 +154,11 @@ storiesOf('PriorityNav', module)
     return (
       <DemoWrapper>
         <PriorityNav
-          icon={props => (
-            <ToggleButton {...props}>
+          icon={
+            <ToggleButton>
               <Icon />
             </ToggleButton>
-          )}
+          }
           dropdownList={children => (
             <CustomDropdown>
               {children.map(item => (

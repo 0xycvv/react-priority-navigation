@@ -9,6 +9,7 @@ export interface PriorityNavProps extends Partial<DefaultProps> {
   children: Array<React.ReactNode>;
   dropdownList: (
     dropdownItems: any,
+    isOpen: boolean,
   ) => React.ReactElement<HTMLElement>;
 }
 
@@ -30,24 +31,16 @@ export interface DefaultProps {
     background: string;
   };
   isOpen: boolean;
-  iconSetting: IconSetting;
-  icon?: (
-    props: IconSetting,
-  ) =>
-    | React.ReactElement<HTMLElement>
-    | React.ReactElement<HTMLElement>;
+  icon?: any;
 }
 
 export interface PriorityNavState {
   children: Array<React.ReactNode>;
   dropdownItems: Array<React.ReactNode>;
   lastItemWidth: Array<number>;
-  show: boolean;
+  isOpen: boolean;
 }
 
 export interface ButtonProps {
-  color?: string;
-  size?: number;
-  hoverColor?: string;
-  children?: React.ReactNode;
+  onClick?: () => void;
 }
