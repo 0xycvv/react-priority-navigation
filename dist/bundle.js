@@ -5,10 +5,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
 var React = require('react');
-var styled = _interopDefault(require('styled-components'));
-var Trigger = _interopDefault(require('rc-trigger'));
 var ResizeObserver = _interopDefault(require('resize-observer-polyfill'));
-var uniqid = require('uniqid');
 var debounce = _interopDefault(require('lodash.debounce'));
 
 /*! *****************************************************************************
@@ -60,86 +57,29 @@ function __makeTemplateObject(cooked, raw) {
     return cooked;
 }
 
-function styleInject(css, ref) {
-  if ( ref === void 0 ) ref = {};
-  var insertAt = ref.insertAt;
-
-  if (!css || typeof document === 'undefined') { return; }
-
-  var head = document.head || document.getElementsByTagName('head')[0];
-  var style = document.createElement('style');
-  style.type = 'text/css';
-
-  if (insertAt === 'top') {
-    if (head.firstChild) {
-      head.insertBefore(style, head.firstChild);
-    } else {
-      head.appendChild(style);
+var classNames = function () {
+    var args = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+        args[_i] = arguments[_i];
     }
-  } else {
-    head.appendChild(style);
-  }
+    return args.filter(Boolean).join(' ');
+};
+var css = function (styles) { return styles; };
 
-  if (style.styleSheet) {
-    style.styleSheet.cssText = css;
-  } else {
-    style.appendChild(document.createTextNode(css));
-  }
-}
-
-var css = ".rc-trigger-popup {\n  position: absolute;\n  left: -9999px;\n  top: -9999px;\n  z-index: 1050;\n}\n.rc-trigger-popup-hidden {\n  display: none;\n}\n.rc-trigger-popup-zoom-enter,\n.rc-trigger-popup-zoom-appear {\n  opacity: 0;\n  animation-duration: 0.3s;\n  animation-fill-mode: both;\n  animation-timing-function: cubic-bezier(0.18, 0.89, 0.32, 1.28);\n  animation-play-state: paused;\n}\n.rc-trigger-popup-zoom-leave {\n  animation-duration: 0.3s;\n  animation-fill-mode: both;\n  animation-timing-function: cubic-bezier(0.6, -0.3, 0.74, 0.05);\n  animation-play-state: paused;\n}\n.rc-trigger-popup-zoom-enter.rc-trigger-popup-zoom-enter-active,\n.rc-trigger-popup-zoom-appear.rc-trigger-popup-zoom-appear-active {\n  animation-name: rcTriggerZoomIn;\n  animation-play-state: running;\n}\n.rc-trigger-popup-zoom-leave.rc-trigger-popup-zoom-leave-active {\n  animation-name: rcTriggerZoomOut;\n  animation-play-state: running;\n}\n@keyframes rcTriggerZoomIn {\n  0% {\n    opacity: 0;\n    transform-origin: 50% 50%;\n    transform: scale(0, 0);\n  }\n  100% {\n    opacity: 1;\n    transform-origin: 50% 50%;\n    transform: scale(1, 1);\n  }\n}\n@keyframes rcTriggerZoomOut {\n  0% {\n    opacity: 1;\n    transform-origin: 50% 50%;\n    transform: scale(1, 1);\n  }\n  100% {\n    opacity: 0;\n    transform-origin: 50% 50%;\n    transform: scale(0, 0);\n  }\n}\n.rc-trigger-popup-mask {\n  position: fixed;\n  top: 0;\n  right: 0;\n  left: 0;\n  bottom: 0;\n  background-color: #373737;\n  background-color: rgba(55, 55, 55, 0.6);\n  height: 100%;\n  filter: alpha(opacity=50);\n  z-index: 1050;\n}\n.rc-trigger-popup-mask-hidden {\n  display: none;\n}\n.rc-trigger-popup-fade-enter,\n.rc-trigger-popup-fade-appear {\n  opacity: 0;\n  animation-duration: 0.3s;\n  animation-fill-mode: both;\n  animation-timing-function: cubic-bezier(0.55, 0, 0.55, 0.2);\n  animation-play-state: paused;\n}\n.rc-trigger-popup-fade-leave {\n  animation-duration: 0.3s;\n  animation-fill-mode: both;\n  animation-timing-function: cubic-bezier(0.55, 0, 0.55, 0.2);\n  animation-play-state: paused;\n}\n.rc-trigger-popup-fade-enter.rc-trigger-popup-fade-enter-active,\n.rc-trigger-popup-fade-appear.rc-trigger-popup-fade-appear-active {\n  animation-name: rcTriggerMaskFadeIn;\n  animation-play-state: running;\n}\n.rc-trigger-popup-fade-leave.rc-trigger-popup-fade-leave-active {\n  animation-name: rcDialogFadeOut;\n  animation-play-state: running;\n}\n@keyframes rcTriggerMaskFadeIn {\n  0% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n@keyframes rcDialogFadeOut {\n  0% {\n    opacity: 1;\n  }\n  100% {\n    opacity: 0;\n  }\n}\n";
-styleInject(css);
-
-var Root = styled.div(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  display: inline-block;\n  width: ", ";\n  /* height: ", "; */\n  vertical-align: middle;\n  cursor: pointer;\n  color: ", ";\n\n  &:hover {\n    color: #999;\n  }\n"], ["\n  display: inline-block;\n  width: ", ";\n  /* height: ", "; */\n  vertical-align: middle;\n  cursor: pointer;\n  color: ", ";\n\n  &:hover {\n    color: #999;\n  }\n"])), function (props) { return (props.size ? props.size + "px" : '16px'); }, function (props) { return (props.size ? props.size + "px" : '16px'); }, function (props) { return (props.color ? props.color : '#000'); });
-var ToggleButton = function (_a) {
-    var children = _a.children, props = __rest(_a, ["children"]);
-    return (React.createElement(Root, __assign({}, props), children || (React.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 512 512" },
+var ToggleButton = function (props) { return (React.createElement("div", __assign({ className: "PriorityNav_Button" }, props),
+    React.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 512 512", width: "1rem", height: "1rem" },
         React.createElement("path", { fill: "currentColor", 
             // tslint:disable-next-line
-            d: "M328 256c0 39.8-32.2 72-72 72s-72-32.2-72-72 32.2-72 72-72 72 32.2 72 72zm104-72c-39.8 0-72 32.2-72 72s32.2 72 72 72 72-32.2 72-72-32.2-72-72-72zm-352 0c-39.8 0-72 32.2-72 72s32.2 72 72 72 72-32.2 72-72-32.2-72-72-72z" })))));
-};
-var templateObject_1;
+            d: "M328 256c0 39.8-32.2 72-72 72s-72-32.2-72-72 32.2-72 72-72 72 32.2 72 72zm104-72c-39.8 0-72 32.2-72 72s32.2 72 72 72 72-32.2 72-72-32.2-72-72-72zm-352 0c-39.8 0-72 32.2-72 72s32.2 72 72 72 72-32.2 72-72-32.2-72-72-72z" })))); };
 
-var Root$1 = styled.div(templateObject_1$1 || (templateObject_1$1 = __makeTemplateObject(["\n  min-width: ", ";\n  position: relative;\n  white-space: nowrap;\n"], ["\n  min-width: ", ";\n  position: relative;\n  white-space: nowrap;\n"])), function (_a) {
-    var minWidth = _a.minWidth;
-    return minWidth;
-});
-var Wrapper = styled.div(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n  display: inline-block;\n  background: ", ";\n"], ["\n  display: inline-block;\n  background: ",
-    ";\n"])), function (_a) {
-    var background = _a.background;
-    return background;
-});
-var Item = styled.div(templateObject_3 || (templateObject_3 = __makeTemplateObject(["\n  display: inline-block;\n  padding: ", ";\n"], ["\n  display: inline-block;\n  padding: ",
-    ";\n"])), function (_a) {
-    var itemPadding = _a.itemPadding;
-    return itemPadding;
-});
-var PLACEMENT = {
-    left: {
-        points: ['cr', 'cl'],
-    },
-    right: {
-        points: ['cl', 'cr'],
-    },
-    top: {
-        points: ['bc', 'tc'],
-    },
-    bottom: {
-        points: ['tc', 'bc'],
-    },
-    topLeft: {
-        points: ['bl', 'tl'],
-    },
-    topRight: {
-        points: ['br', 'tr'],
-    },
-    bottomRight: {
-        points: ['tr', 'br'],
-    },
-    bottomLeft: {
-        points: ['tl', 'bl'],
-    },
+var Style = function (_a) {
+    var css$$1 = _a.css;
+    return (React.createElement("style", { dangerouslySetInnerHTML: {
+            __html: css$$1,
+        } }));
 };
+var styles = css(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  .PriorityNav_Root {\n    position: relative;\n    white-space: nowrap;\n  }\n  .PriorityNav_Main {\n    display: inline-block;\n  }\n  .PriorityNav_Item {\n    display: inline-block;\n  }\n  .PriorityNav_Button {\n    display: inline-block;\n    vertical-align: middle;\n    cursor: pointer;\n    &:hover {\n      color: #999;\n    }\n  }\n"], ["\n  .PriorityNav_Root {\n    position: relative;\n    white-space: nowrap;\n  }\n  .PriorityNav_Main {\n    display: inline-block;\n  }\n  .PriorityNav_Item {\n    display: inline-block;\n  }\n  .PriorityNav_Button {\n    display: inline-block;\n    vertical-align: middle;\n    cursor: pointer;\n    &:hover {\n      color: #999;\n    }\n  }\n"])));
+var Div = React.forwardRef(function (props, ref) { return (React.createElement("div", __assign({ ref: ref }, props, { className: props.className }))); });
 var PriorityNav = /** @class */ (function (_super) {
     __extends(PriorityNav, _super);
     function PriorityNav() {
@@ -148,7 +88,7 @@ var PriorityNav = /** @class */ (function (_super) {
             children: _this.props.children,
             dropdownItems: [],
             lastItemWidth: [],
-            show: false,
+            isOpen: false,
         };
         _this.outerNav = React.createRef();
         _this.nav = React.createRef();
@@ -160,6 +100,7 @@ var PriorityNav = /** @class */ (function (_super) {
                 var totalWidth = _this.nav.current.offsetWidth;
                 if (_this.items.size > 0 && totalWidth > outerWidth_1) {
                     _this.moveItemToList();
+                    _this.doesItFit();
                 }
                 else if (_this.state.dropdownItems.length > 0 &&
                     outerWidth_1 >
@@ -167,14 +108,19 @@ var PriorityNav = /** @class */ (function (_super) {
                             _this.state.lastItemWidth[_this.state.lastItemWidth.length - 1] +
                             _this.props.offset) {
                     _this.moveItemToNav();
+                    _this.doesItFit();
                 }
             }
-            _this.doesItFit();
         }, _this.props.debounce);
         _this.toggleShow = function () {
-            _this.setState(function (prevState, props) { return ({
-                show: !prevState.show,
+            _this.setState(function (prevState) { return ({
+                isOpen: !prevState.isOpen,
             }); });
+        };
+        _this.getButtonProps = function () {
+            return {
+                onClick: _this.toggleShow,
+            };
         };
         // -------------------------------------
         //   Move Item
@@ -209,25 +155,28 @@ var PriorityNav = /** @class */ (function (_super) {
         _this.renderIcon = function () {
             if (_this.props.icon) {
                 if (typeof _this.props.icon === 'function') {
-                    return _this.props.icon(_this.props.iconSetting || {});
+                    return _this.props.icon();
                 }
-                return React.createElement(_this.props.icon, _this.props.iconSetting);
+                return _this.props.icon;
             }
-            return React.createElement(ToggleButton, __assign({}, _this.props.iconSetting));
+            return React.createElement(ToggleButton, __assign({}, _this.getButtonProps()));
         };
         _this.renderDropdownList = function () {
             var dropdownChildren = _this.state.dropdownItems.map(function (item) { return item; });
-            return _this.props.dropdownList(dropdownChildren);
+            return _this.props.dropdownList(dropdownChildren, _this.state.isOpen);
         };
         _this.renderChildren = function () {
-            var _a = _this.props, children = _a.children, itemPadding = _a.itemPadding, icon = _a.icon, navSetting = _a.navSetting, minWidth = _a.minWidth, props = __rest(_a, ["children", "itemPadding", "icon", "navSetting", "minWidth"]);
-            return React.Children.map(_this.state.children, 
-            // tslint:disable-next-line
-            function (child, i) {
-                return (React.createElement(Item, { innerRef: function (s) {
-                        _this.items.set(i, s);
-                    }, itemPadding: itemPadding, key: uniqid.time() }, child));
+            var _a = _this.props, children = _a.children, itemPadding = _a.itemPadding, props = __rest(_a, ["children", "itemPadding"]);
+            return React.Children.map(_this.state.children, function (child, i) {
+                return (React.createElement(Div, { ref: function (s) { return _this.setItems(i, s); }, style: {
+                        padding: itemPadding,
+                    }, className: 'PriorityNav_Item', key: i }, child));
             });
+        };
+        _this.setItems = function (i, s) {
+            if (s) {
+                _this.items.set(i, s);
+            }
         };
         return _this;
     }
@@ -244,13 +193,15 @@ var PriorityNav = /** @class */ (function (_super) {
         }
     };
     PriorityNav.prototype.render = function () {
-        return (React.createElement(Root$1, { minWidth: this.props.minWidth, innerRef: this.outerNav },
-            React.createElement(Wrapper, __assign({}, this.props.navSetting, { innerRef: this.nav }),
-                this.renderChildren(),
-                this.state.dropdownItems.length > 0 && (React.createElement(Trigger, { action: ['click'], popupAlign: {
-                        points: PLACEMENT[this.props.placement].points,
-                        offset: [0, 3],
-                    }, popup: this.renderDropdownList() }, this.renderIcon())))));
+        return (React.createElement(React.Fragment, null,
+            React.createElement(Div, { style: {
+                    minWidth: this.props.minWidth,
+                }, ref: this.outerNav, className: classNames('PriorityNav_Root', this.props.className) },
+                React.createElement(Style, { css: styles }),
+                React.createElement(Div, { ref: this.nav, className: classNames('PriorityNav_Main') },
+                    this.renderChildren(),
+                    this.renderIcon())),
+            this.renderDropdownList()));
     };
     PriorityNav.defaultProps = {
         itemPadding: 0,
@@ -262,12 +213,11 @@ var PriorityNav = /** @class */ (function (_super) {
             background: 'unset',
         },
         isOpen: false,
-        iconSetting: {},
         icon: undefined,
     };
     return PriorityNav;
 }(React.Component));
-var templateObject_1$1, templateObject_2, templateObject_3;
+var templateObject_1;
 
 exports.default = PriorityNav;
 exports.ToggleButton = ToggleButton;

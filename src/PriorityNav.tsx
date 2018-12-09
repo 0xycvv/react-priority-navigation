@@ -1,11 +1,8 @@
 import * as React from 'react';
-import Trigger from 'rc-trigger';
-import styled from 'styled-components';
 import ResizeObserver from 'resize-observer-polyfill';
-import { time } from 'uniqid';
 import debounce from 'lodash.debounce';
-import 'rc-trigger/assets/index.css';
 
+import { classNames, css } from './utils';
 import {
   PriorityNavProps,
   PriorityNavState,
@@ -13,50 +10,45 @@ import {
 } from './types';
 import ToggleButton from './ToggleButton';
 
-const Root = styled.div`
-  min-width: ${({ minWidth }: { minWidth?: string }) => minWidth};
-  position: relative;
-  white-space: nowrap;
+export const Style = ({ css }: { css: any }) => (
+  <style
+    dangerouslySetInnerHTML={{
+      __html: css,
+    }}
+  />
+);
+
+const styles = css`
+  .PriorityNav_Root {
+    position: relative;
+    white-space: nowrap;
+  }
+  .PriorityNav_Main {
+    display: inline-block;
+  }
+  .PriorityNav_Item {
+    display: inline-block;
+  }
+  .PriorityNav_Button {
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+    &:hover {
+      color: #999;
+    }
+  }
 `;
 
-const Wrapper = styled.div`
-  display: inline-block;
-  background: ${({ background }: { background: string }) =>
-    background};
-`;
+type DivElement = React.DetailedHTMLProps<
+  React.HTMLAttributes<HTMLDivElement>,
+  HTMLDivElement
+>;
 
-const Item = styled.div`
-  display: inline-block;
-  padding: ${({ itemPadding }: { itemPadding?: string | number }) =>
-    itemPadding};
-`;
-
-const PLACEMENT = {
-  left: {
-    points: ['cr', 'cl'],
-  },
-  right: {
-    points: ['cl', 'cr'],
-  },
-  top: {
-    points: ['bc', 'tc'],
-  },
-  bottom: {
-    points: ['tc', 'bc'],
-  },
-  topLeft: {
-    points: ['bl', 'tl'],
-  },
-  topRight: {
-    points: ['br', 'tr'],
-  },
-  bottomRight: {
-    points: ['tr', 'br'],
-  },
-  bottomLeft: {
-    points: ['tl', 'bl'],
-  },
-};
+const Div = React.forwardRef<HTMLDivElement, DivElement>(
+  (props, ref) => (
+    <div ref={ref} {...props} className={props.className} />
+  ),
+);
 
 export default class PriorityNav extends React.Component<
   PriorityNavProps,
@@ -72,18 +64,17 @@ export default class PriorityNav extends React.Component<
       background: 'unset',
     },
     isOpen: false,
-    iconSetting: {},
     icon: undefined,
   };
   state = {
     children: this.props.children,
     dropdownItems: [],
     lastItemWidth: [],
-    show: false,
+    isOpen: false,
   };
   outerNav: React.RefObject<HTMLDivElement> = React.createRef();
   nav: React.RefObject<HTMLDivElement> = React.createRef();
-  items: Map<number, HTMLElement> = new Map();
+  items: Map<number, HTMLDivElement> = new Map();
   resizeObserver: ResizeObserver;
 
   componentDidMount() {
@@ -107,6 +98,7 @@ export default class PriorityNav extends React.Component<
       const totalWidth = this.nav.current.offsetWidth;
       if (this.items.size > 0 && totalWidth > outerWidth) {
         this.moveItemToList();
+        this.doesItFit();
       } else if (
         this.state.dropdownItems.length > 0 &&
         outerWidth >
@@ -117,36 +109,47 @@ export default class PriorityNav extends React.Component<
             this.props.offset!
       ) {
         this.moveItemToNav();
+        this.doesItFit();
       }
     }
-    this.doesItFit();
   }, this.props.debounce);
 
   toggleShow = () => {
-    this.setState((prevState, props) => ({
-      show: !prevState.show,
+    this.setState(prevState => ({
+      isOpen: !prevState.isOpen,
     }));
+  };
+
+  getButtonProps = () => {
+    return {
+      onClick: this.toggleShow,
+    };
   };
 
   render() {
     return (
-      <Root minWidth={this.props.minWidth} innerRef={this.outerNav}>
-        <Wrapper {...this.props.navSetting!} innerRef={this.nav}>
-          {this.renderChildren()}
-          {this.state.dropdownItems.length > 0 && (
-            <Trigger
-              action={['click']}
-              popupAlign={{
-                points: PLACEMENT[this.props.placement!].points,
-                offset: [0, 3],
-              }}
-              popup={this.renderDropdownList()}
-            >
-              {this.renderIcon()}
-            </Trigger>
+      <>
+        <Div
+          style={{
+            minWidth: this.props.minWidth,
+          }}
+          ref={this.outerNav}
+          className={classNames(
+            'PriorityNav_Root',
+            this.props.className,
           )}
-        </Wrapper>
-      </Root>
+        >
+          <Style css={styles} />
+          <Div
+            ref={this.nav}
+            className={classNames('PriorityNav_Main')}
+          >
+            {this.renderChildren()}
+            {this.renderIcon()}
+          </Div>
+        </Div>
+        {this.renderDropdownList()}
+      </>
     );
   }
 
@@ -188,48 +191,47 @@ export default class PriorityNav extends React.Component<
   private renderIcon = () => {
     if (this.props.icon) {
       if (typeof this.props.icon === 'function') {
-        return this.props.icon(this.props.iconSetting || {});
+        return this.props.icon();
       }
-      return React.createElement(
-        this.props.icon,
-        this.props.iconSetting,
-      );
+      return this.props.icon;
     }
-    return <ToggleButton {...this.props.iconSetting} />;
+    return <ToggleButton {...this.getButtonProps()} />;
   };
 
   private renderDropdownList = () => {
     const dropdownChildren = this.state.dropdownItems.map(
       item => item,
     );
-    return this.props.dropdownList(dropdownChildren);
+    return this.props.dropdownList(
+      dropdownChildren,
+      this.state.isOpen,
+    );
   };
 
   private renderChildren = () => {
-    const {
-      children,
-      itemPadding,
-      icon,
-      navSetting,
-      minWidth,
-      ...props
-    } = this.props;
+    const { children, itemPadding, ...props } = this.props;
     return React.Children.map(
       this.state.children,
-      // tslint:disable-next-line
       (child: React.ReactElement<any>, i: number) => {
         return (
-          <Item
-            innerRef={s => {
-              this.items.set(i, s);
+          <Div
+            ref={(s: HTMLDivElement) => this.setItems(i, s)}
+            style={{
+              padding: itemPadding,
             }}
-            itemPadding={itemPadding}
-            key={time()}
+            className={'PriorityNav_Item'}
+            key={i}
           >
             {child}
-          </Item>
+          </Div>
         );
       },
     );
+  };
+
+  private setItems = (i: number, s: HTMLDivElement | null) => {
+    if (s) {
+      this.items.set(i, s);
+    }
   };
 }
