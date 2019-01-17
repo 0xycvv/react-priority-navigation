@@ -1,6 +1,6 @@
 {
   "name": "react-priority-navigation",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "priority navigation component for react",
   "main": "dist/bundle.js",
   "module": "dist/index.js",
