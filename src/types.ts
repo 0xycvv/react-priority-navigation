@@ -1,3 +1,5 @@
+import React from 'react';
+
 interface IconSetting {
   color?: string;
   size?: number;
@@ -6,6 +8,7 @@ interface IconSetting {
 
 export interface PriorityNavProps extends Partial<DefaultProps> {
   className?: string;
+  style?: React.CSSProperties;
   children: Array<React.ReactNode>;
   dropdownList: (
     dropdownItems: any,
