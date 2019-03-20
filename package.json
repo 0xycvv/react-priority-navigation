@@ -36,7 +36,7 @@
     "@storybook/addon-storyshots": "3.4.8",
     "@storybook/react": "3.4.8",
     "@types/lodash.debounce": "4.0.3",
-    "@types/node": "9.6.23",
+    "@types/node": "9.6.46",
     "@types/react": "16.4.6",
     "@types/react-dom": "16.0.6",
     "@types/storybook__react": "3.0.9",
