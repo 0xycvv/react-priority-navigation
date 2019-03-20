@@ -126,7 +126,7 @@ export default DemoWrapper;
 storiesOf('PriorityNav', module)
   .add('Custom DropdownList', () => {
     return (
-      <DemoWrapper>
+      // <DemoWrapper>
         <PriorityNav
           dropdownList={(children, isOpen) =>
             isOpen && (
@@ -147,12 +147,12 @@ storiesOf('PriorityNav', module)
           <div>Looooong Div🐢🐢🐢🐢</div>
           <div onClick={() => console.log('onclicked')}>🉑</div>
         </PriorityNav>
-      </DemoWrapper>
+      // </DemoWrapper>
     );
   })
   .add('Custom Icon', () => {
     return (
-      <DemoWrapper>
+      // <DemoWrapper>
         <PriorityNav
           icon={
             <ToggleButton>
@@ -176,6 +176,6 @@ storiesOf('PriorityNav', module)
           <div>Looooong Div🐢🐢🐢🐢</div>
           <div>🉑</div>
         </PriorityNav>
-      </DemoWrapper>
+      // </DemoWrapper>
     );
   });
