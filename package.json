@@ -39,7 +39,7 @@
     "@types/node": "9.6.23",
     "@types/react": "16.4.6",
     "@types/react-dom": "16.0.6",
-    "@types/storybook__react": "3.0.9",
+    "@types/storybook__react": "4.0.1",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "23.4.0",
     "jest": "23.4.0",

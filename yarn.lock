@@ -914,9 +914,9 @@
   dependencies:
     csstype "^2.2.0"
 
-"@types/storybook__react@3.0.9":
-  version "3.0.9"
-  resolved "https://registry.yarnpkg.com/@types/storybook__react/-/storybook__react-3.0.9.tgz#aac193f0c037ddfc2342bd027d720553ac089a56"
+"@types/storybook__react@4.0.1":
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@types/storybook__react/-/storybook__react-4.0.1.tgz#b6320c9d027b8ee7ef1445fef8b4cba196d48ace"
   dependencies:
     "@types/react" "*"
     "@types/webpack-env" "*"
