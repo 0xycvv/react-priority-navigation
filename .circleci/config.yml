@@ -4,7 +4,7 @@
 #
 version: 2
 jobs:
-  build:
+  test:
     docker:
       # specify the version you desire here
       - image: circleci/node:10.15
@@ -22,19 +22,35 @@ jobs:
       # Download and cache dependencies
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
+            - yarn-packages-v2-{{ checksum "yarn.lock" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
 
       - run: yarn install
 
       - save_cache:
           paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
+            - ~/.cache/yarn
+          key: yarn-packages-v2-{{ checksum "yarn.lock" }}
 
-      # build
-      - run: yarn run build
       # test
       - run: yarn run test
+  release:
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:10.15
 
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+
+      - run: |
+          yarn install
+
+      - run: yarn run build
+
+      - run: |
+          npx semantic-release
