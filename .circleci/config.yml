@@ -4,10 +4,10 @@
 #
 version: 2
 jobs:
-  build:
+  test:
     docker:
       # specify the version you desire here
-      - image: circleci/node:7.10@sha256:295338f0d5e60150b6eb8d1f43f82007206e0edae0c159e77b383f7598933028
+      - image: circleci/node:10.15
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -22,19 +22,45 @@ jobs:
       # Download and cache dependencies
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
+            - yarn-packages-v2-{{ checksum "yarn.lock" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
 
       - run: yarn install
 
       - save_cache:
           paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
+            - ~/.cache/yarn
+          key: yarn-packages-v2-{{ checksum "yarn.lock" }}
 
-      # build
-      - run: yarn run build
       # test
       - run: yarn run test
+  release:
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:10.15
 
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+
+      - run: |
+          yarn install
+
+      - run: yarn run build
+
+      - run: |
+          npx semantic-release
+
+workflows:
+  version: 2
+  test_and_release:
+    # Run the test jobs first, then the release only when all the test jobs are successful
+    jobs:
+      - test
+      - release:
+          requires:
+            - test

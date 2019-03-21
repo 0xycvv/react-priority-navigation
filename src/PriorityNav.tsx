@@ -145,7 +145,7 @@ export default class PriorityNav extends React.Component<
             className={classNames('PriorityNav_Main')}
           >
             {this.renderChildren()}
-            {this.renderIcon()}
+            {this.state.dropdownItems.length > 0 && this.renderIcon()}
           </Div>
         </Div>
         {this.renderDropdownList()}
