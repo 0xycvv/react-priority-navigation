@@ -54,3 +54,13 @@ jobs:
 
       - run: |
           npx semantic-release
+
+workflows:
+  version: 2
+  test_and_release:
+    # Run the test jobs first, then the release only when all the test jobs are successful
+    jobs:
+      - test
+      - release:
+          requires:
+            - test
