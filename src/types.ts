@@ -1,19 +1,17 @@
 import React from 'react';
 
-interface IconSetting {
-  color?: string;
-  size?: number;
-  hoverColor?: string;
-}
-
 export interface PriorityNavProps extends Partial<DefaultProps> {
   className?: string;
   style?: React.CSSProperties;
   children: Array<React.ReactNode>;
-  dropdownList: (
-    dropdownItems: any,
-    isOpen: boolean,
-  ) => React.ReactElement<HTMLElement>;
+  dropdown: (dropdownProps: {
+    dropdownItems: Array<React.ReactElement>;
+    buttonProps: UseToggleButtonReturn;
+    isOpen: boolean;
+  }) => React.ReactNode;
+  // dropdown: (
+
+  // ) => React.ReactNode;
 }
 
 export interface DefaultProps {
@@ -34,16 +32,21 @@ export interface DefaultProps {
     background: string;
   };
   isOpen: boolean;
-  icon?: any;
 }
 
 export interface PriorityNavState {
-  children: Array<React.ReactNode>;
-  dropdownItems: Array<React.ReactNode>;
-  lastItemWidth: Array<number>;
-  isOpen: boolean;
+  children: React.ReactNodeArray;
+  dropdownItems: Array<React.ReactElement>;
+  lastItemWidth: number[];
 }
 
-export interface ButtonProps {
-  onClick?: () => void;
+interface UseToggleButtonReturn {
+  bind: {
+    onClick: () => void;
+  };
 }
+
+export type DivElement = React.DetailedHTMLProps<
+  React.HTMLAttributes<HTMLDivElement>,
+  HTMLDivElement
+>;

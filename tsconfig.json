@@ -20,6 +20,7 @@
     "pretty": true,
     "esModuleInterop": true,
     "stripInternal": true,
+    "downlevelIteration": true,
     "plugins": [
       {
         "name": "typescript-styled-plugin"
