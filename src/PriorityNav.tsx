@@ -82,7 +82,7 @@ export const PriorityNav: React.FC<PriorityNavProps> = props => {
     .current;
 
   const initalState: PriorityNavState = {
-    children: [...props.children],
+    children: props.children as React.ReactElement[],
     dropdownItems: [],
     lastItemWidth: [],
   };
@@ -161,7 +161,7 @@ export const PriorityNav: React.FC<PriorityNavProps> = props => {
           })}
           {state.dropdownItems.length > 0 &&
             props.dropdown({
-              dropdownItems: state.dropdownItems,
+              dropdownItems: state.dropdownItems as React.ReactElement[],
               buttonProps,
               isOpen,
             })}

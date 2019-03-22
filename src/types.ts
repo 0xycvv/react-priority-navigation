@@ -3,7 +3,7 @@ import React from 'react';
 export interface PriorityNavProps extends Partial<DefaultProps> {
   className?: string;
   style?: React.CSSProperties;
-  children: Array<React.ReactNode>;
+  children: Array<React.ReactNode | React.ReactElement>;
   dropdown: (dropdownProps: {
     dropdownItems: Array<React.ReactElement>;
     buttonProps: UseToggleButtonReturn;
@@ -35,7 +35,7 @@ export interface DefaultProps {
 }
 
 export interface PriorityNavState {
-  children: React.ReactNodeArray;
+  children: Array<React.ReactNode | React.ReactElement>;
   dropdownItems: Array<React.ReactElement>;
   lastItemWidth: number[];
 }
