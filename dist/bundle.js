@@ -4,9 +4,10 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var React = require('react');
-var ResizeObserver = _interopDefault(require('resize-observer-polyfill'));
 var debounce = _interopDefault(require('lodash.debounce'));
+var React = require('react');
+var React__default = _interopDefault(React);
+var ResizeObserver = _interopDefault(require('resize-observer-polyfill'));
 
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -22,24 +23,16 @@ MERCHANTABLITY OR NON-INFRINGEMENT.
 See the Apache Version 2.0 License for specific language governing permissions
 and limitations under the License.
 ***************************************************************************** */
-/* global Reflect, Promise */
 
-var extendStatics = Object.setPrototypeOf ||
-    ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-    function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-
-function __extends(d, b) {
-    extendStatics(d, b);
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-}
-
-var __assign = Object.assign || function __assign(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
-    }
-    return t;
+var __assign = function() {
+    __assign = Object.assign || function __assign(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
 };
 
 function __rest(s, e) {
@@ -52,10 +45,49 @@ function __rest(s, e) {
     return t;
 }
 
+function __read(o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+}
+
+function __spread() {
+    for (var ar = [], i = 0; i < arguments.length; i++)
+        ar = ar.concat(__read(arguments[i]));
+    return ar;
+}
+
 function __makeTemplateObject(cooked, raw) {
     if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
     return cooked;
 }
+
+var DefaultIcon = function () { return (React__default.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 512 512", width: "1rem", height: "1rem" },
+    React__default.createElement("path", { fill: "currentColor", 
+        // tslint:disable-next-line
+        d: "M328 256c0 39.8-32.2 72-72 72s-72-32.2-72-72 32.2-72 72-72 72 32.2 72 72zm104-72c-39.8 0-72 32.2-72 72s32.2 72 72 72 72-32.2 72-72-32.2-72-72-72zm-352 0c-39.8 0-72 32.2-72 72s32.2 72 72 72 72-32.2 72-72-32.2-72-72-72z" }))); };
+
+function useToggleButton() {
+    var _a = __read(React.useState(false), 2), isOpen = _a[0], setIsOpen = _a[1];
+    return {
+        isOpen: isOpen,
+        bind: {
+            onClick: function () { return setIsOpen(!isOpen); },
+        },
+    };
+}
+var ToggleButton = function (props) { return (React.createElement("div", __assign({ className: "PriorityNav_Button" }, props), props.children || React.createElement(DefaultIcon, null))); };
 
 var classNames = function () {
     var args = [];
@@ -66,158 +98,139 @@ var classNames = function () {
 };
 var css = function (styles) { return styles; };
 
-var ToggleButton = function (props) { return (React.createElement("div", __assign({ className: "PriorityNav_Button" }, props),
-    React.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 512 512", width: "1rem", height: "1rem" },
-        React.createElement("path", { fill: "currentColor", 
-            // tslint:disable-next-line
-            d: "M328 256c0 39.8-32.2 72-72 72s-72-32.2-72-72 32.2-72 72-72 72 32.2 72 72zm104-72c-39.8 0-72 32.2-72 72s32.2 72 72 72 72-32.2 72-72-32.2-72-72-72zm-352 0c-39.8 0-72 32.2-72 72s32.2 72 72 72 72-32.2 72-72-32.2-72-72-72z" })))); };
-
 var Style = function (_a) {
-    var css$$1 = _a.css;
+    var css = _a.css;
     return (React.createElement("style", { dangerouslySetInnerHTML: {
-            __html: css$$1,
+            __html: css,
         } }));
 };
-var styles = css(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  .PriorityNav_Root {\n    position: relative;\n    white-space: nowrap;\n  }\n  .PriorityNav_Main {\n    display: inline-block;\n  }\n  .PriorityNav_Item {\n    display: inline-block;\n  }\n  .PriorityNav_Button {\n    display: inline-block;\n    vertical-align: middle;\n    cursor: pointer;\n    &:hover {\n      color: #999;\n    }\n  }\n"], ["\n  .PriorityNav_Root {\n    position: relative;\n    white-space: nowrap;\n  }\n  .PriorityNav_Main {\n    display: inline-block;\n  }\n  .PriorityNav_Item {\n    display: inline-block;\n  }\n  .PriorityNav_Button {\n    display: inline-block;\n    vertical-align: middle;\n    cursor: pointer;\n    &:hover {\n      color: #999;\n    }\n  }\n"])));
+var styles = css(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  .PriorityNav_Root {\n    position: relative;\n    white-space: nowrap;\n  }\n  .PriorityNav_Main {\n    display: inline-block;\n  }\n  .PriorityNav_Item {\n    display: inline-block;\n  }\n  .PriorityNav_Button {\n    display: inline-block;\n    vertical-align: middle;\n    cursor: pointer;\n    padding: 5px;\n  }\n  .PriorityNav_Button:hover {\n    color: #999;\n  }\n"], ["\n  .PriorityNav_Root {\n    position: relative;\n    white-space: nowrap;\n  }\n  .PriorityNav_Main {\n    display: inline-block;\n  }\n  .PriorityNav_Item {\n    display: inline-block;\n  }\n  .PriorityNav_Button {\n    display: inline-block;\n    vertical-align: middle;\n    cursor: pointer;\n    padding: 5px;\n  }\n  .PriorityNav_Button:hover {\n    color: #999;\n  }\n"])));
 var Div = React.forwardRef(function (props, ref) { return (React.createElement("div", __assign({ ref: ref }, props, { className: props.className }))); });
-var PriorityNav = /** @class */ (function (_super) {
-    __extends(PriorityNav, _super);
-    function PriorityNav() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.state = {
-            children: _this.props.children,
-            dropdownItems: [],
-            lastItemWidth: [],
-            isOpen: false,
-        };
-        _this.outerNav = React.createRef();
-        _this.nav = React.createRef();
-        _this.items = new Map();
-        // tslint:disable-next-line:member-ordering
-        _this.doesItFit = debounce(function () {
-            if (_this.nav.current && _this.outerNav.current) {
-                var outerWidth_1 = _this.outerNav.current.offsetWidth;
-                var totalWidth = _this.nav.current.offsetWidth;
-                if (_this.items.size > 0 && totalWidth > outerWidth_1) {
-                    _this.moveItemToList();
-                    _this.doesItFit();
-                }
-                else if (_this.state.dropdownItems.length > 0 &&
-                    outerWidth_1 >
-                        totalWidth +
-                            _this.state.lastItemWidth[_this.state.lastItemWidth.length - 1] +
-                            _this.props.offset) {
-                    _this.moveItemToNav();
-                    _this.doesItFit();
-                }
-            }
-        }, _this.props.debounce);
-        _this.toggleShow = function () {
-            _this.setState(function (prevState) { return ({
-                isOpen: !prevState.isOpen,
-            }); });
-        };
-        _this.getButtonProps = function () {
+function reducer(state, action) {
+    switch (action.type) {
+        case 'move':
+            var lastChildren = state.children.splice(-1, 1);
+            return __assign({}, state, { children: state.children, dropdownItems: __spread(lastChildren).concat(state.dropdownItems) }, (action.payload.lastItem && {
+                lastItemWidth: __spread(state.lastItemWidth, [
+                    action.payload.lastItem.clientWidth,
+                ]),
+            }));
+        case 'return':
+            var copyDropdownItems = __spread(state.dropdownItems);
+            var firstItemFromList = copyDropdownItems.splice(0, 1);
+            var lastItemWidth = __spread(state.lastItemWidth);
+            lastItemWidth.splice(0, 1);
             return {
-                onClick: _this.toggleShow,
+                children: __spread(state.children, firstItemFromList),
+                dropdownItems: copyDropdownItems,
+                lastItemWidth: lastItemWidth,
             };
-        };
-        // -------------------------------------
-        //   Move Item
-        // -------------------------------------
-        _this.moveItemToList = function () {
-            _this.setState(function (prevState) {
-                var children = prevState.children.slice();
-                var lastItem = children.splice(-1, 1);
-                return {
-                    children: children,
-                    dropdownItems: lastItem.concat(prevState.dropdownItems),
-                    lastItemWidth: prevState.lastItemWidth.concat([
-                        _this.items.get(prevState.children.length - 1).clientWidth,
-                    ]),
-                };
-            });
-        };
-        _this.moveItemToNav = function () {
-            _this.setState(function (prevState, props) {
-                var dropdownItems = prevState.dropdownItems.slice();
-                var firstItemFromList = dropdownItems.splice(0, 1);
-                return {
-                    children: prevState.children.slice().concat(firstItemFromList),
-                    dropdownItems: dropdownItems,
-                    lastItemWidth: prevState.lastItemWidth.splice(0, 1),
-                };
-            });
-        };
-        // -------------------------------------
-        //   Render Method
-        // -------------------------------------
-        _this.renderIcon = function () {
-            if (_this.props.icon) {
-                if (typeof _this.props.icon === 'function') {
-                    return _this.props.icon();
-                }
-                return _this.props.icon;
-            }
-            return React.createElement(ToggleButton, __assign({}, _this.getButtonProps()));
-        };
-        _this.renderDropdownList = function () {
-            var dropdownChildren = _this.state.dropdownItems.map(function (item) { return item; });
-            return _this.props.dropdownList(dropdownChildren, _this.state.isOpen);
-        };
-        _this.renderChildren = function () {
-            var _a = _this.props, children = _a.children, itemPadding = _a.itemPadding, props = __rest(_a, ["children", "itemPadding"]);
-            return React.Children.map(_this.state.children, function (child, i) {
-                return (React.createElement(Div, { ref: function (s) { return _this.setItems(i, s); }, style: {
-                        padding: itemPadding,
-                    }, className: 'PriorityNav_Item', key: i }, child));
-            });
-        };
-        _this.setItems = function (i, s) {
-            if (s) {
-                _this.items.set(i, s);
-            }
-        };
-        return _this;
+        default:
+            return state;
     }
-    PriorityNav.prototype.componentDidMount = function () {
-        this.resizeObserver = new ResizeObserver(this.doesItFit);
-        if (this.outerNav.current) {
-            this.resizeObserver.observe(this.outerNav.current);
+}
+var PriorityNav = function (props) {
+    var outerNav = React.useRef(null);
+    var nav = React.useRef(null);
+    var items = React.useRef(new Map())
+        .current;
+    var initalState = {
+        children: props.children,
+        dropdownItems: [],
+        lastItemWidth: [],
+    };
+    var _a = __read(React.useReducer(reducer, initalState), 2), state = _a[0], dispatch = _a[1];
+    var outerNavWidth = useResizeObserve(outerNav);
+    React.useEffect(function () {
+        doesItFit();
+    }, [state.children, state.dropdownItems, outerNavWidth]);
+    var doesItFit = debounce(function () {
+        if (nav.current && outerNav.current) {
+            var outerWidth_1 = outerNav.current.offsetWidth;
+            var totalWidth = nav.current.offsetWidth;
+            if (state.children.length > 0 && totalWidth > outerWidth_1) {
+                moveItemToList();
+            }
+            else if (state.dropdownItems.length > 0 &&
+                outerWidth_1 >
+                    totalWidth +
+                        state.lastItemWidth[state.lastItemWidth.length - 1] +
+                        (props.offset || 0)) {
+                moveItemToNav();
+            }
         }
-        this.doesItFit();
+    }, props.debounce);
+    var moveItemToList = function () {
+        dispatch({
+            type: 'move',
+            payload: {
+                lastItem: items.get(state.children.length - 1),
+            },
+        });
     };
-    PriorityNav.prototype.componentWillUnmount = function () {
-        if (this.outerNav.current) {
-            this.resizeObserver.unobserve(this.outerNav.current);
+    var moveItemToNav = function () {
+        dispatch({
+            type: 'return',
+        });
+    };
+    var _b = useToggleButton(), isOpen = _b.isOpen, buttonProps = __rest(_b, ["isOpen"]);
+    return (React.createElement(React.Fragment, null,
+        React.createElement(Div, { style: {
+                minWidth: props.minWidth,
+            }, ref: outerNav, className: classNames('PriorityNav_Root', props.className) },
+            React.createElement(Style, { css: styles }),
+            React.createElement(Div, { ref: nav, className: classNames('PriorityNav_Main') },
+                React.Children.map(state.children, function (child, i) {
+                    return (React.createElement(Div, { ref: function (s) {
+                            if (s) {
+                                items.set(i, s);
+                            }
+                        }, style: {
+                            padding: props.itemPadding,
+                        }, className: 'PriorityNav_Item', key: i }, child));
+                }),
+                state.dropdownItems.length > 0 &&
+                    props.dropdown({
+                        dropdownItems: state.dropdownItems,
+                        buttonProps: buttonProps,
+                        isOpen: isOpen,
+                    })))));
+};
+PriorityNav.defaultProps = {
+    itemPadding: 0,
+    offset: 0,
+    debounce: 0,
+    minWidth: '250px',
+    navSetting: {
+        background: 'unset',
+    },
+};
+function useResizeObserve(ref) {
+    var _a = __read(React.useState(ref.current
+        ? ref.current.clientWidth
+        : window
+            ? window.innerWidth
+            : 0), 2), width = _a[0], setWidth = _a[1];
+    function handleWidth() {
+        if (ref.current) {
+            setWidth(ref.current.clientWidth);
         }
-    };
-    PriorityNav.prototype.render = function () {
-        return (React.createElement(React.Fragment, null,
-            React.createElement(Div, { style: {
-                    minWidth: this.props.minWidth,
-                }, ref: this.outerNav, className: classNames('PriorityNav_Root', this.props.className) },
-                React.createElement(Style, { css: styles }),
-                React.createElement(Div, { ref: this.nav, className: classNames('PriorityNav_Main') },
-                    this.renderChildren(),
-                    this.renderIcon())),
-            this.renderDropdownList()));
-    };
-    PriorityNav.defaultProps = {
-        itemPadding: 0,
-        offset: 0,
-        debounce: 0,
-        placement: 'bottomRight',
-        minWidth: '250px',
-        navSetting: {
-            background: 'unset',
-        },
-        isOpen: false,
-        icon: undefined,
-    };
-    return PriorityNav;
-}(React.Component));
+    }
+    React.useLayoutEffect(function () {
+        var resizeObserver = new ResizeObserver(handleWidth);
+        if (ref.current) {
+            resizeObserver.observe(ref.current);
+        }
+        return function () {
+            if (ref.current) {
+                resizeObserver.unobserve(ref.current);
+            }
+        };
+    }, [ref]);
+    return width;
+}
 var templateObject_1;
 
-exports.default = PriorityNav;
+exports.PriorityNav = PriorityNav;
 exports.ToggleButton = ToggleButton;
+exports.useToggleButton = useToggleButton;

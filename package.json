@@ -12,7 +12,7 @@
     "build": "rm -rf dist && tsc && NODE_ENV=production rollup -c",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "test": "jest",
+    "test": "NODE_ENV=test jest --passWithNoTests",
     "semantic-release": "semantic-release"
   },
   "author": "Eric Yip (https://github.com/ericyip)",
@@ -42,6 +42,7 @@
     "@types/react-dom": "16.8.3",
     "@types/storybook__react": "4.0.1",
     "@types/styled-components": "4.1.12",
+    "@vital-ui/react-popup": "^0.10.0",
     "babel-jest": "24.5.0",
     "babel-loader": "8.0.5",
     "babel-plugin-require-context-hook": "1.0.0",
