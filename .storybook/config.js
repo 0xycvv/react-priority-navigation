@@ -1,5 +1,4 @@
 import { addParameters, configure } from '@storybook/react';
-require('babel-plugin-require-context-hook/register')();
 
 // automatically import all files ending in *.stories.js
 const req = require.context('../stories', true, /.stories.tsx$/);
