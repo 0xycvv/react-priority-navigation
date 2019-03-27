@@ -1961,7 +1961,7 @@
   resolved "https://registry.yarnpkg.com/@types/yargs/-/yargs-12.0.10.tgz#17a8ec65cd8e88f51b418ceb271af18d3137df67"
   integrity sha512-WsVzTPshvCSbHThUduGGxbmnwcpkgSctHGHTqzWyFg4lYAuV5qXlyFPOsP3OWqCINfmg/8VXP+zJaa4OxEsBQQ==
 
-"@vital-ui/react-popup@^0.10.0":
+"@vital-ui/react-popup@0.10.0":
   version "0.10.0"
   resolved "https://registry.yarnpkg.com/@vital-ui/react-popup/-/react-popup-0.10.0.tgz#bf27d2e7bc249bdc8942daef158753147e680b39"
   integrity sha512-OL1QgLi0HgqXkA4etCO2D4fT5i+FPqtPaJ++vadI9FPfyAWFv1Q/OiQ0okopqb8ZjCxWERtTR4JG7JzQsutM+w==
