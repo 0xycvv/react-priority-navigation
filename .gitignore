@@ -1,5 +1,6 @@
 node_modules
 dist
 .rpt2_cache
+.idea*
 lib
 storybook-static
