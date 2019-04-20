@@ -48,11 +48,12 @@ const Div = React.forwardRef<HTMLDivElement, DivElement>(
 function reducer(state: PriorityNavState, action: any) {
   switch (action.type) {
     case 'move':
-      const lastChildren = state.children.splice(-1, 1);
+      const lastChild = state.children.reduceRight(child => child);
+      const newChildren = state.children.filter(child => child !== lastChild);
       return {
         ...state,
-        children: state.children,
-        dropdownItems: [...lastChildren].concat(state.dropdownItems),
+        children: newChildren,
+        dropdownItems:  [...state.dropdownItems, lastChild],
         ...(action.payload.lastItem && {
           lastItemWidth: [
             ...state.lastItemWidth,
