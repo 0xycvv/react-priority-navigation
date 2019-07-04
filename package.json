@@ -44,7 +44,7 @@
     "@types/styled-components": "4.1.12",
     "@vital-ui/react-popup": "0.10.0",
     "babel-jest": "24.5.0",
-    "babel-loader": "8.0.5",
+    "babel-loader": "8.0.6",
     "babel-plugin-require-context-hook": "1.0.0",
     "jest": "24.5.0",
     "jest-styled-components": "6.3.1",
