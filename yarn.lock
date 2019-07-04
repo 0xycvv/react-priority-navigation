@@ -2534,31 +2534,31 @@
     lodash.unescape "4.0.1"
     semver "5.5.0"
 
-"@vital-ui/react-popup@0.10.0":
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/@vital-ui/react-popup/-/react-popup-0.10.0.tgz#bf27d2e7bc249bdc8942daef158753147e680b39"
-  integrity sha512-OL1QgLi0HgqXkA4etCO2D4fT5i+FPqtPaJ++vadI9FPfyAWFv1Q/OiQ0okopqb8ZjCxWERtTR4JG7JzQsutM+w==
+"@vital-ui/react-popup@0.10.5":
+  version "0.10.5"
+  resolved "https://registry.yarnpkg.com/@vital-ui/react-popup/-/react-popup-0.10.5.tgz#82369f74f31cf756addcacd8cf9802fa17b6084a"
+  integrity sha512-LiodFimpeAI248cMwlA9C7cLWyGNieAF0LR3WFDnqFd30oilBczABvuS4lBr7RHt6WFLKu1J371fwS/ZFxlTxg==
   dependencies:
-    "@vital-ui/react-theme" "^0.10.0"
-    "@vital-ui/react-utils" "^0.10.0"
+    "@vital-ui/react-theme" "^0.10.5"
+    "@vital-ui/react-utils" "^0.10.5"
     classnames "^2.2.6"
     rc-trigger "2.6.2"
 
-"@vital-ui/react-theme@^0.10.0":
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/@vital-ui/react-theme/-/react-theme-0.10.0.tgz#4a76cc6f39b9a71e7e54637ba2e1128602673467"
-  integrity sha512-lBndQotj3YHMlx7PCSrL2WWWdgSGD9QWoQ8XDum6cGG4lg1lqPJiaC3jZPy1DCH20BzrlmnkzQLiNZ4Cq5HlKA==
+"@vital-ui/react-theme@^0.10.5":
+  version "0.10.5"
+  resolved "https://registry.yarnpkg.com/@vital-ui/react-theme/-/react-theme-0.10.5.tgz#4aac791a12a2844f0f6844aa0a7db4af37b63740"
+  integrity sha512-2LOwYLmGRGkh9JsV8Mtzey+JhrtETEaInd45BZq/QiPYGbkz7lAM48R9r2pt2AJ85DkuBrD5jBZ6ekzUJh/Urw==
   dependencies:
     classnames "^2.2.6"
     lodash.merge "^4.6.1"
     polished "^3.0.0"
 
-"@vital-ui/react-utils@^0.10.0":
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/@vital-ui/react-utils/-/react-utils-0.10.0.tgz#7670e3b848a64b618cea75e74af9d4b386033f0c"
-  integrity sha512-QqbCxdgygkrt5oADm2r9dB0gLXSNMTUOoqvytfrkcfeGM0qqjsqBLLMuFP54cLwm5qLLZv/TXXxcOSOHe7FWQg==
+"@vital-ui/react-utils@^0.10.5":
+  version "0.10.5"
+  resolved "https://registry.yarnpkg.com/@vital-ui/react-utils/-/react-utils-0.10.5.tgz#53ec1709a1b93c2337a4d7b51e03b9e38df9f363"
+  integrity sha512-Heib5QkPzG8RUMkSy19QpZBoSlGWXYB9/mE5IAqaIq4ZYUIx9QOJMgXzC0Fy+OlLGG5BDlypbNdSkQbYtPO/tA==
   dependencies:
-    "@vital-ui/react-theme" "^0.10.0"
+    "@vital-ui/react-theme" "^0.10.5"
     classnames "^2.2.6"
     styled-system "^3.2.1"
 

@@ -42,7 +42,7 @@
     "@types/react-dom": "16.8.3",
     "@types/storybook__react": "4.0.1",
     "@types/styled-components": "4.1.12",
-    "@vital-ui/react-popup": "0.10.0",
+    "@vital-ui/react-popup": "0.10.5",
     "babel-jest": "24.5.0",
     "babel-loader": "8.0.5",
     "babel-plugin-require-context-hook": "1.0.0",
