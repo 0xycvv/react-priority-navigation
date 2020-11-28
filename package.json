@@ -57,7 +57,7 @@
     "rollup-plugin-commonjs": "9.2.2",
     "rollup-plugin-node-resolve": "4.0.1",
     "rollup-plugin-postcss": "2.0.3",
-    "semantic-release": "15.13.3",
+    "semantic-release": "17.2.3",
     "styled-components": "4.2.0",
     "ts-jest": "24.2.0",
     "tslint-config-prettier": "1.18.0",
