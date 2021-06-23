@@ -9,9 +9,6 @@ export interface PriorityNavProps extends Partial<DefaultProps> {
     buttonProps: UseToggleButtonReturn;
     isOpen: boolean;
   }) => React.ReactNode;
-  // dropdown: (
-
-  // ) => React.ReactNode;
 }
 
 export interface DefaultProps {
@@ -19,18 +16,6 @@ export interface DefaultProps {
   minWidth: string;
   offset: number;
   debounce: number;
-  placement:
-    | 'left'
-    | 'right'
-    | 'top'
-    | 'bottom'
-    | 'topLeft'
-    | 'topRight'
-    | 'bottomRight'
-    | 'bottomLeft';
-  navSetting: {
-    background: string;
-  };
   isOpen: boolean;
 }
 

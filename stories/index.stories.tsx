@@ -19,6 +19,7 @@ storiesOf('PriorityNav', module)
   .add('Custom DropdownList', () => {
     return (
       <PriorityNav
+        itemPadding={40}
         dropdown={({ dropdownItems, buttonProps }) => (
           <Popup
             popup={
@@ -33,11 +34,11 @@ storiesOf('PriorityNav', module)
           </Popup>
         )}
       >
-        <button>I'm a Button ⏹ ️</button>
-        <a>This is Link 🔗</a>
-        <div>I'm a Div!</div>
-        <div>Looooong Div🐢🐢🐢🐢</div>
-        <div onClick={() => console.log('onclicked')}>🉑</div>
+        <button>1-I'm a Button ⏹ ️</button>
+        <a>2-This is Link 🔗</a>
+        <div>3-I'm a Div!</div>
+        <div>4-Looooong Div🐢🐢🐢🐢</div>
+        <div onClick={() => console.log('onclicked')}>5-🉑</div>
       </PriorityNav>
     );
   })
