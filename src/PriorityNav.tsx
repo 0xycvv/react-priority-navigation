@@ -48,12 +48,13 @@ const Div = React.forwardRef<HTMLDivElement, DivElement>(
 function reducer(state: PriorityNavState, action: any) {
   switch (action.type) {
     case 'move':
-      const lastChild = state.children.reduceRight(child => child);
-      const newChildren = state.children.filter(child => child !== lastChild);
+      console.log(state.children);
+      const lastChild = state.children[state.children.length - 1];
+      const children = state.children.slice(0, -1);
       return {
         ...state,
-        children: newChildren,
-        dropdownItems:  [...state.dropdownItems, lastChild],
+        children,
+        dropdownItems: [lastChild, ...state.dropdownItems],
         ...(action.payload.lastItem && {
           lastItemWidth: [
             ...state.lastItemWidth,
@@ -62,13 +63,14 @@ function reducer(state: PriorityNavState, action: any) {
         }),
       };
     case 'return':
-      const copyDropdownItems = [...state.dropdownItems];
-      const firstItemFromList = copyDropdownItems.splice(0, 1);
-      let lastItemWidth = [...state.lastItemWidth];
-      lastItemWidth.splice(0, 1);
+      const [
+        firstItemFromList,
+        ...dropdownItems
+      ] = state.dropdownItems;
+      const [_, ...lastItemWidth] = state.lastItemWidth;
       return {
-        children: [...state.children, ...firstItemFromList],
-        dropdownItems: copyDropdownItems,
+        children: [...state.children, firstItemFromList],
+        dropdownItems,
         lastItemWidth,
       };
     default:
@@ -76,18 +78,18 @@ function reducer(state: PriorityNavState, action: any) {
   }
 }
 
-export const PriorityNav: React.FC<PriorityNavProps> = props => {
+export const PriorityNav: React.FC<PriorityNavProps> = (props) => {
   const outerNav = React.useRef<HTMLDivElement>(null);
   const nav = React.useRef<HTMLDivElement>(null);
   const items = React.useRef(new Map<number, HTMLDivElement>())
     .current;
 
-  const initalState: PriorityNavState = {
+  const initialState: PriorityNavState = {
     children: props.children as React.ReactElement[],
     dropdownItems: [],
     lastItemWidth: [],
   };
-  const [state, dispatch] = React.useReducer(reducer, initalState);
+  const [state, dispatch] = React.useReducer(reducer, initialState);
 
   const outerNavWidth = useResizeObserve(outerNav);
 
@@ -177,9 +179,6 @@ PriorityNav.defaultProps = {
   offset: 0,
   debounce: 0,
   minWidth: '250px',
-  navSetting: {
-    background: 'unset',
-  },
 };
 
 function useResizeObserve(ref: React.RefObject<HTMLElement>) {

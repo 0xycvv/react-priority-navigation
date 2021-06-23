@@ -4,3 +4,4 @@ dist
 .idea*
 lib
 storybook-static
+yarn-error.log

@@ -5,8 +5,7 @@
     "@babel/typescript"
   ],
   "plugins": [
-    "@babel/plugin-proposal-class-properties",
-    "babel-plugin-require-context-hook"
+    "@babel/plugin-proposal-class-properties"
   ],
   "ignore": [
     "*.d.ts"
