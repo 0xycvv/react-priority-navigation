@@ -48,7 +48,6 @@ const Div = React.forwardRef<HTMLDivElement, DivElement>(
 function reducer(state: PriorityNavState, action: any) {
   switch (action.type) {
     case 'move':
-      console.log(state.children);
       const lastChild = state.children[state.children.length - 1];
       const children = state.children.slice(0, -1);
       return {

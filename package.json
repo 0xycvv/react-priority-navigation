@@ -12,8 +12,7 @@
     "build": "rm -rf dist && tsc && NODE_ENV=production rollup -c",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "test": "NODE_ENV=test jest --passWithNoTests",
-    "semantic-release": "semantic-release"
+    "test": "NODE_ENV=test jest --passWithNoTests"
   },
   "author": "Eric Yip (https://github.com/ericyip)",
   "license": "MIT",
@@ -56,7 +55,6 @@
     "rollup-plugin-commonjs": "9.2.2",
     "rollup-plugin-node-resolve": "4.0.1",
     "rollup-plugin-postcss": "2.0.3",
-    "semantic-release": "17.4.4",
     "styled-components": "5.3.0",
     "ts-jest": "27.0.3",
     "tslint-config-prettier": "1.18.0",
